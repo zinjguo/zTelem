@@ -1,0 +1,20 @@
+<zTelem>
+    <sim name="dcs">
+        <plane name="P-51D">
+            <vne>505</vne>
+            <vs>80</vs>
+            <vibration>255</vibration>
+        </plane>
+        <plane name="FW-190D">
+            <vne>505</vne>
+            <vs>80</vs>
+            <vibration>255</vibration>
+        </plane>
+        <plane name="BF-109K4">
+            <vne>605</vne>
+            <vs>50</vs>
+            <vibration>255</vibration>
+        </plane>
+    </sim>
+
+</zTelem>
