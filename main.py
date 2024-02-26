@@ -213,10 +213,14 @@ def updateTelemetry(data : dict):
             else:
                 items += f"{k}: {v}\n"
     itemsText = ""
-
-    itemsText = "slip:" + str(data.get('slip', 0)) + "\n"
+    
+    itemsText = "Wind: " + str(data.get("Wind")) + "\n"
+    itemsText += "slip:" + str(data.get('slip', 0)) + "\n"
     itemsText += "Aircraft:" + str(data.get('N', 0)) + "\n"
     itemsText += "True Air Speed (knots):" + str(data.get('TAS', 0)) + "\n"
+    itemsText += "Guns:" + str(data.get('Gun', 0)) + "\n"
+    itemsText += "AoA:" + str(data.get('AoA', 0)) + "\n"
+    itemsText += "Serial output: " + str(data.get("serialOutput", 0)) + "\n"
     window.telemStatus.setText(itemsText)
     
 

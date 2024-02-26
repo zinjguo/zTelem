@@ -17,7 +17,7 @@ class SerialHandler:
         
     def connect(self, port):
         try:
-            self.link = txfer.SerialTransfer("COM14")
+            self.link = txfer.SerialTransfer(port)
             if(self.link.open() == False):
                 print("Error opening " + port)
                 return False

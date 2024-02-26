@@ -9,8 +9,17 @@ import socket
 import logging
 import utils
 import time
+import numpy as np
 from time import monotonic
 from serialHandler import SerialHandler
+import math
+from typing import List, Dict
+
+# Highpass filter dispenser
+HPFs: Dict[str, utils.HighPassFilter] = utils.Dispenser(utils.HighPassFilter)
+
+# Lowpass filter dispenser
+LPFs: Dict[str, utils.LowPassFilter] = utils.Dispenser(utils.LowPassFilter)
 
 
 class TelemManager(QObject, threading.Thread):
@@ -23,6 +32,8 @@ class TelemManager(QObject, threading.Thread):
     numFrames : int = 0
     
     serialEnabled = False
+    
+    lastGun = 0;
     
     ser = SerialHandler()
     
@@ -92,9 +103,8 @@ class TelemManager(QObject, threading.Thread):
             try:
                 items["MechInfo"] = json.loads(items["MechInfo"])
             except: pass
+            
 
-
-            self.telemetryReceived.emit(items)
             if (self.serialEnabled) and ("TAS" in items) and ("ACCs" in items) and (items['N'] == "P-51D" or items['N'] == "P-51D-30-NA" or items['N'] == "FW-190D9"):
                 minSpeed = 50
                 maxSpeed = 200
@@ -102,14 +112,38 @@ class TelemManager(QObject, threading.Thread):
                 gainX = 1
                 gainY = 1
 
-                gainX = self.map_range(items['TAS'], minSpeed, maxSpeed, .35, 2.5)
-                gainY = self.map_range(items['TAS'], minSpeed, maxSpeed, .35, 2.5)
+                #gainX = self.map_range(items['TAS'], minSpeed, maxSpeed, .35, 2.5)
+                gainX = .25
+                gainY = self.map_range(items['TAS'], minSpeed, maxSpeed, .25, 2)
                 
+               
+
+                                
                 curFrameTime = time.monotonic() * 1000
-                if (curFrameTime - self.lastFrameTime > 1000/80):
-                    _rec_list = self.ser.sendTelem([float(gainX), float(gainY), 1.0])
-                    print("rec_list:", _rec_list)
+                if (curFrameTime - self.lastFrameTime > 1000/30):
+                    if self.lastGun != items['Gun']:
+                        vibration = 5
+                        self.lastGun = items['Gun']
+                    else :
+                        gunFire = False
+                        vibration = 0
+                        
+                    if items['AoA'] > 10 & items['altAgl'] > 0:
+                        vibration = self.map_range(items['AoA'], 10, 13, 1, 5)
+                    
+                        
+                    _rec_list = self.ser.sendTelem([float(gainX), float(gainY), float(vibration)])
+                    if _rec_list:
+                    
+                        _rec_list = list(np.around(np.array(_rec_list), 2))
+                        items['serialOutput'] = _rec_list
+
+                    print(_rec_list)
                     self.lastFrameTime = curFrameTime
+            
+            
+            self.telemetryReceived.emit(items)
+        
                 
     def clamp(self, n, min, max): 
         if n < min: 
