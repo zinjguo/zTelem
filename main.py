@@ -1,24 +1,24 @@
-# 
+#
 # This file is part of the TelemFFB distribution (https://github.com/walmis/TelemFFB).
 # Copyright (c) 2023 Valmantas Palikša.
-# 
-# This program is free software: you can redistribute it and/or modify  
-# it under the terms of the GNU General Public License as published by  
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, version 3.
 #
-# This program is distributed in the hope that it will be useful, but 
-# WITHOUT ANY WARRANTY; without even the implied warranty of 
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
 # General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License 
+# You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
 import json
 import logging
 import sys
-sys.path.insert(0, '') 
+sys.path.insert(0, '')
 import struct
 import time
 import traceback
@@ -28,7 +28,9 @@ import configparser
 from PySide6 import QtWidgets
 from PySide6.QtUiTools import QUiLoader
 from telemManager import TelemManager
-      
+from settingsmanager import *
+import xmlutils
+
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -38,7 +40,7 @@ logging.basicConfig(
 )
 
 import re
-  
+
 import argparse
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout,QMessageBox, QScrollArea
@@ -68,82 +70,19 @@ def format_dict(data, prefix=""):
             output += prefix + key + " = " + str(value) + "\n"
     return output
 
-	
 
 
 
-# Subclass QMainWindow to customize your application's main window
-class MainWindow(QMainWindow):
-    
-    def __init__(self):
-        super().__init__()
-
-        self.setWindowTitle("zTelem")
-        self.resize(800, 600)
-        layout = QVBoxLayout()
-                
-        serialLabel = QLabel("Serial Monitor")
-        self.serialMonitor = QLabel("Waiting for data...")
-        
-        
-        label = QLabel("DCS Telemetry")
-         
-        layout.addWidget(label);
-        
-        self.lbl_telem_data = QLabel("Waiting for data...")
-        self.lbl_telem_data.setTextInteractionFlags(Qt.TextSelectableByMouse)
-        self.lbl_telem_data.setWordWrap(True)
-        layout.addWidget(self.lbl_telem_data)
-        layout.addStretch()
-       
-        
-        
-  
-        widget = QWidget()
-        widget.setLayout(layout)
-        
-        
-        scrollArea = QScrollArea(self)
-        scrollArea.setWidgetResizable(True)
-        scrollArea.setWidget(widget)
-        
-        self.setCentralWidget(scrollArea)
-        
-        
-        
-    def update_serial(self, serialText : str):
-        self.serialMonitor.setText(serialText);
-
-        # Set the central widget of the Window.
-
-    def update_telemetry(self, data : dict):
-
-        items = ""
-        for k,v in data.items():
-            if k == "MechInfo":
-                v = format_dict(v, "MechInfo.")
-                items += f"{v}"
-            else:
-                if type(v) == float:
-                    items += f"{k}: {v:.2f}\n"
-                else:
-                    items += f"{k}: {v}\n"
-        # itemsText = ""
-
-        #items_text = "slip:" + str(data.get('slip', 0)) + "\n"
-        #items_text += "True Air Speed (knots):" + str(data.get('TAS', 0)) + "\n"
-        self.lbl_telem_data.setText(str(data.get('TAS', 0)))
-        
 
 
 
 
 
 # window = MainWindow()
-# window.show()    
+# window.show()
 
 # manager.telemetryReceived.connect(window.update_telemetry)
-    
+
 # #serialManager.serialReceived.connect(window.update_serial);
 
 
@@ -158,7 +97,7 @@ def getComPorts():
         com_ports.append(port)
     if com_ports:
         window.comSelect.addItems(com_ports)
-        
+
 def load_last_selection():
     config = configparser.ConfigParser()
     config.read(config_file)
@@ -172,7 +111,7 @@ def load_last_selection():
     if 'autoConnect' in config:
         autoConnect = config['autoConnect'].getboolean('autoConnect', False)
         window.autoConnect.setChecked(autoConnect)
-                
+
 def save_last_selection():
     config = configparser.ConfigParser()
     config['LastSelection'] = {'COMPort': window.comSelect.currentText()}
@@ -180,7 +119,7 @@ def save_last_selection():
 
     with open(config_file, 'w') as configfile:
         config.write(configfile)
-        
+
 def updateComStatus(status):
     if status == 'connected':
         window.status.setText("Connected")
@@ -213,7 +152,7 @@ def updateTelemetry(data : dict):
             else:
                 items += f"{k}: {v}\n"
     itemsText = ""
-    
+
     itemsText = "Wind: " + str(data.get("Wind")) + "\n"
     itemsText += "slip:" + str(data.get('slip', 0)) + "\n"
     itemsText += "Aircraft:" + str(data.get('N', 0)) + "\n"
@@ -223,12 +162,12 @@ def updateTelemetry(data : dict):
     itemsText += "altAgl:" + str(data.get('altAgl', 0)) + "\n"
     itemsText += "Serial output: " + str(data.get("serialOutput", 0)) + "\n"
     window.telemStatus.setText(itemsText)
-    
+
 
 logging.getLogger().handlers[0].setStream(sys.stdout)
 logging.info("zTelem Starting")
 #serialManager = SerialManager();
-#serialManager.start();    
+#serialManager.start();
 
 manager = TelemManager()
 manager.start()
@@ -252,6 +191,22 @@ window.refreshComBtn.clicked.connect(getComPorts)
 
 window.setWindowTitle("zTelem")
 window.show()
+
+defaults_path = utils.get_resource_path('defaults.xml', prefer_root=True)
+userconfig_path = 'userconfig.xml'
+utils.create_empty_userxml_file(userconfig_path)
+
+# global settings_mgr, telem_manager, config_was_default
+xmlutils.update_vars("joystick", userconfig_path, defaults_path)
+global settings_mgr
+settings_mgr = SettingsWindow(datasource="Global", device="joystick", userconfig_path=userconfig_path, defaults_path=defaults_path)
+
+
+settings_mgr.currentmodel_click()
+settings_mgr.update_table_on_sim_change()
+
+
+settings_mgr.show();
 
 app.exec()
 

@@ -1,17 +1,17 @@
-# 
+#
 # This file is part of the TelemFFB distribution (https://github.com/walmis/TelemFFB).
 # Copyright (c) 2023 Valmantas Palikša.
-# 
-# This program is free software: you can redistribute it and/or modify  
-# it under the terms of the GNU General Public License as published by  
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, version 3.
 #
-# This program is distributed in the hope that it will be useful, but 
-# WITHOUT ANY WARRANTY; without even the implied warranty of 
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
 # General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License 
+# You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
@@ -22,7 +22,7 @@ import select
 from time import monotonic
 import logging
 import sys
-import winpaths
+#import winpaths
 
 
 
@@ -37,7 +37,7 @@ def to_number(v):
             return int(v)
     except ValueError:
         return v
-        
+
 
 def sock_readable(s) -> bool:
     r,_,_ = select.select([s], [],[], 0)
@@ -49,15 +49,15 @@ def clamp(n, minn, maxn):
 def scale(val, src : tuple, dst : tuple):
     """
     Scale the given value from the scale of src to the scale of dst.
-    """   
+    """
     return (val - src[0]) * (dst[1] - dst[0]) / (src[1] - src[0]) + dst[0]
 
 
 def scale_clamp(val, src : tuple, dst : tuple):
     """
-    Scale the given value from the scale of src to the scale of dst. 
+    Scale the given value from the scale of src to the scale of dst.
     and clamp the result to dst
-    """   
+    """
     v = scale(val, src, dst)
     return clamp(v, dst[0], dst[1])
 
@@ -96,11 +96,11 @@ class HighPassFilter:
         self.last_update = 0
         self.last_input = init_val
         self.value = init_val
-        
+
     def update(self, x):
         now = monotonic()
         dt = now - self.last_update
-        if dt > 1: 
+        if dt > 1:
             self.last_input = x # initialize filter
 
         self.last_update = now
@@ -143,7 +143,7 @@ class Dispenser:
     def remove(self, name):
         if name in self.dict:
             del self.dict[name]
-    
+
     def __contains__(self, name):
         return name in self.dict
 
@@ -238,7 +238,7 @@ def to_body_vector(yaw, pitch, roll, world_coordinates):
     return [x[0] for x in body_coordinates]
 
 
-from PyQt5.QtWidgets import QMessageBox
+from PySide6.QtWidgets import QMessageBox
 
 def install_export_lua():
     saved_games = winpaths.get_path(winpaths.FOLDERID.SavedGames)
@@ -285,10 +285,10 @@ def install_export_lua():
                     f.close()
                 write_script()
 
-from PyQt5 import QtCore, QtGui, Qt
+from PySide6 import QtCore, QtGui, Qt
 
 class OutLog(QtCore.QObject):
-    textReceived = QtCore.pyqtSignal(str)
+    textReceived = QtCore.Signal(str)
 
     def __init__(self, edit, out=None, color=None):
         QtCore.QObject.__init__(self)
@@ -326,6 +326,53 @@ class OutLog(QtCore.QObject):
 
 if __name__ == "__main__":
     #test install
-    from PyQt5.QtWidgets import QApplication
+    from PySide6.QtWidgets import QApplication
     app = QApplication(sys.argv)
     install_export_lua()
+
+def create_empty_userxml_file(path):
+    if not os.path.isfile(path):
+        # Create an empty XML file with the specified root element
+        root = ET.Element("TelemFFB")
+        tree = ET.ElementTree(root)
+        # Create a backup directory if it doesn't exist
+        if not os.path.exists(os.path.dirname(path)):
+            os.makedirs(os.path.dirname(path))
+        tree.write(path)
+        logging.info(f"Empty XML file created at {path}")
+    else:
+        logging.info(f"XML file exists at {path}")
+
+def get_resource_path(relative_path, prefer_root=False, force=False):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    if getattr(sys, 'frozen', False):
+        # we are running in a bundle
+        bundle_dir = sys._MEIPASS
+        script_dir = os.path.dirname(sys.executable)
+    else:
+        # we are running in a normal Python environment
+        bundle_dir = os.path.dirname(os.path.abspath(__file__))
+        script_dir = bundle_dir
+
+    if prefer_root:
+        # if prefer_root is true, look in 'script dir' to find the relative path
+        f_path = os.path.join(script_dir, relative_path)
+        if os.path.isfile(f_path) or force:
+            # if the file exists, return the path
+            return f_path
+        else:
+            logging.info(
+                f"get_resource_path, root_prefer=True.  Did not find {relative_path} relative to script/exe dir.. looking in bundle dir...")
+            # fall back to bundle dir if not found it script dir, log warning if still not found
+            # note, script dir and bundle dir are same when running from source
+            f_path = os.path.join(bundle_dir, relative_path)
+            if not os.path.isfile(f_path):
+                logging.warning(
+                    f"Warning, get_resource_path, root_prefer=True, did not find file in script/exe folder or bundle folder: {f_path}")
+            return f_path
+    else:
+        f_path = os.path.join(bundle_dir, relative_path)
+        if not os.path.isfile(f_path):
+            logging.warning(f"Warning, get_resource_path did not find file in bundle folder: {f_path}")
+        return f_path
+
