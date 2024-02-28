@@ -114,13 +114,13 @@ class TelemManager(QObject, threading.Thread):
 
                 #gainX = self.map_range(items['TAS'], minSpeed, maxSpeed, .35, 2.5)
                 gainX = .25
-                gainY = self.map_range(items['TAS'], minSpeed, maxSpeed, .25, 2)
+                gainY = self.map_range(items['TAS'], minSpeed, maxSpeed, .25, 1.75)
                 
                
 
                                 
                 curFrameTime = time.monotonic() * 1000
-                if (curFrameTime - self.lastFrameTime > 1000/30):
+                if (curFrameTime - self.lastFrameTime > 1000/72):
                     if self.lastGun != items['Gun']:
                         vibration = 5
                         self.lastGun = items['Gun']
@@ -128,8 +128,8 @@ class TelemManager(QObject, threading.Thread):
                         gunFire = False
                         vibration = 0
                         
-                    if items['AoA'] > 10 & items['altAgl'] > 0:
-                        vibration = self.map_range(items['AoA'], 10, 13, 1, 5)
+                    if items['AoA'] > 9 and items['altAgl'] > 10:
+                        vibration = self.map_range(items['AoA'], 9, 13, 1, 5)
                     
                         
                     _rec_list = self.ser.sendTelem([float(gainX), float(gainY), float(vibration)])
@@ -138,7 +138,7 @@ class TelemManager(QObject, threading.Thread):
                         _rec_list = list(np.around(np.array(_rec_list), 2))
                         items['serialOutput'] = _rec_list
 
-                    print(_rec_list)
+                    #print(_rec_list)
                     self.lastFrameTime = curFrameTime
             
             

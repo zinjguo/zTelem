@@ -48,20 +48,20 @@ class SerialHandler:
         self.link.send(size + dataSize)
         
         curMillis = time.monotonic()
-        while not self.link.available():
-            if ((time.monotonic() - curMillis) > 1):
-                print("Timeout")
-                return False
-            if self.link.status < 0:
-                if self.link.status == txfer.CRC_ERROR:
-                    print('ERROR: CRC_ERROR')
-                elif self.link.status == txfer.PAYLOAD_ERROR:
-                    print('ERROR: PAYLOAD_ERROR')
-                elif self.link.status == txfer.STOP_BYTE_ERROR:
-                    print('ERROR: STOP_BYTE_ERROR')
-                else:
-                    print('ERROR: {}'.format(self.link.status))
-        rec_values = self.link.rx_obj(obj_type=type(packet), start_pos=0,
-            obj_byte_size=dataSize,
-            list_format='f')
-        return(rec_values)
+        # while not self.link.available():
+        #     if ((time.monotonic() - curMillis) > 1):
+        #         print("Timeout")
+        #         return False
+        #     if self.link.status < 0:
+        #         if self.link.status == txfer.CRC_ERROR:
+        #             print('ERROR: CRC_ERROR')
+        #         elif self.link.status == txfer.PAYLOAD_ERROR:
+        #             print('ERROR: PAYLOAD_ERROR')
+        #         elif self.link.status == txfer.STOP_BYTE_ERROR:
+        #             print('ERROR: STOP_BYTE_ERROR')
+        #         else:
+        #             print('ERROR: {}'.format(self.link.status))
+        # # rec_values = self.link.rx_obj(obj_type=type(packet), start_pos=0,
+        #     obj_byte_size=dataSize,
+        #     list_format='f')
+        # return(rec_values)

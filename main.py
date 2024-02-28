@@ -220,6 +220,7 @@ def updateTelemetry(data : dict):
     itemsText += "True Air Speed (knots):" + str(data.get('TAS', 0)) + "\n"
     itemsText += "Guns:" + str(data.get('Gun', 0)) + "\n"
     itemsText += "AoA:" + str(data.get('AoA', 0)) + "\n"
+    itemsText += "altAgl:" + str(data.get('altAgl', 0)) + "\n"
     itemsText += "Serial output: " + str(data.get("serialOutput", 0)) + "\n"
     window.telemStatus.setText(itemsText)
     
