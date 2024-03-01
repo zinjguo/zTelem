@@ -1,8 +1,8 @@
 import serial
-from PySide6 import QtWidgets
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout,QMessageBox, QScrollArea
-from PySide6.QtCore import QObject, Signal, Qt, QThread
-from PySide6.QtGui import QFont
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout,QMessageBox, QScrollArea
+from PyQt5.QtCore import QObject, pyqtSignal, Qt, QThread
+from PyQt5.QtGui import QFont
 import threading
 import json
 import socket
@@ -23,9 +23,9 @@ LPFs: Dict[str, utils.LowPassFilter] = utils.Dispenser(utils.LowPassFilter)
 
 
 class TelemManager(QObject, threading.Thread):
-    telemetryReceived = Signal(object)
+    telemetryReceived = pyqtSignal(object)
 
-    comConnected = Signal(object)
+    comConnected = pyqtSignal(object)
 
     timedOut : bool = True
     lastFrameTime : int = 0

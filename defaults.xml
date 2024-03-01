@@ -33,7 +33,21 @@
 		<order>1</order>
 		<name>type</name>
 		<any>true</any>
+		<info>Aircraft Type</info>
+		<displayname>Class</displayname>
 		<MSFS>true</MSFS>
+		<joystick>true</joystick>
+		<pedals>true</pedals>
+		<collective>true</collective>
+		<validvalues>PropellerAircraft,TurbopropAircraft,JetAircraft,Helicopter,HPGHelicopter,GliderAircraft</validvalues>
+		<datatype>list</datatype>
+	</defaults>
+	<defaults>
+		<Grouping>Basic</Grouping>
+		<order>1</order>
+		<name>type</name>
+		<any>true</any>
+		<XPLANE>true</XPLANE>
 		<validvalues>PropellerAircraft,TurbopropAircraft,JetAircraft,Helicopter,HPGHelicopter,GliderAircraft</validvalues>
 		<datatype>list</datatype>
 		<info>Aircraft Type</info>
@@ -52,6 +66,7 @@
 		<datatype>float</datatype>
 		<info>Aileron gain value for use in dynamic forces calculations &lt;br&gt;Higher gain will reach Max sooner</info>
 		<displayname>Aileron Gain</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -64,6 +79,7 @@
 		<datatype>float</datatype>
 		<info>Aileron maximum value for use in dynamic forces calculationst&lt;br&gt;&lt;br&gt;This is a percentage of the spring force value in VPforce Configurator</info>
 		<displayname>Aileron Max Force</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -76,6 +92,7 @@
 		<datatype>float</datatype>
 		<info>Elevator gain value for use in dynamic forces calculations &lt;br&gt;Higher gain will reach Max sooner</info>
 		<displayname>Elevator Gain</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -88,6 +105,7 @@
 		<datatype>float</datatype>
 		<info>Elevator maximum value for use in dynamic forces calculations&lt;br&gt;&lt;br&gt;This is a percentage of the spring force value in VPforce Configurator</info>
 		<displayname>Elevator Max Force</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -100,6 +118,7 @@
 		<datatype>float</datatype>
 		<info>Rudder gain value for use in dynamic forces calculations &lt;br&gt;Higher gain will reach Max sooner</info>
 		<displayname>Rudder Gain</displayname>
+		<XPLANE>true</XPLANE>
 		<pedals>true</pedals>
 	</defaults>
 	<defaults>
@@ -112,6 +131,7 @@
 		<datatype>float</datatype>
 		<info>Rudder maximum value for use in dynamic forces calculations&lt;br&gt;&lt;br&gt;This is a percentage of the spring force value in VPforce Configurator</info>
 		<displayname>Rudder Max Force</displayname>
+		<XPLANE>true</XPLANE>
 		<pedals>true</pedals>
 	</defaults>
 	<defaults>
@@ -121,6 +141,7 @@
 		<MSFS>true</MSFS>
 		<datatype>bool</datatype>
 		<displayname>Force Trim</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<collective>true</collective>
 	</defaults>
@@ -134,6 +155,7 @@
 		<datatype>float</datatype>
 		<info>Strength of cyclic spring</info>
 		<displayname>Cyclic Spring Gain</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -144,6 +166,7 @@
 		<info>Enable force tirm for elevator axis</info>
 		<displayname>Elevator Axis</displayname>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<value></value>
 		<datatype>bool</datatype>
@@ -156,6 +179,7 @@
 		<info>Enable force tirm for aileron axis</info>
 		<displayname>Aileron Axis</displayname>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<datatype>bool</datatype>
 	</defaults>
@@ -168,6 +192,7 @@
 		<datatype>button</datatype>
 		<info>Button # to hold to release spring while moving axis</info>
 		<displayname>Force Trim Release Button</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<collective>true</collective>
 	</defaults>
@@ -180,6 +205,7 @@
 		<datatype>button</datatype>
 		<info>Button # to recenter spring trims</info>
 		<displayname>Force Trim Reset Button</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<collective>true</collective>
 	</defaults>
@@ -212,6 +238,7 @@
 		<datatype>bool</datatype>
 		<info>Enable spring centering for aircraft while maintaining dynamic forces&lt;br&gt;&lt;br&gt; Do not use together with FBW</info>
 		<displayname>Spring Centering (not FBW)</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 	</defaults>
@@ -227,6 +254,7 @@
 		<datatype>float</datatype>
 		<info>Aileron spring gain when "aircraft is spring centered" is enabled&lt;br&gt;&lt;br&gt;This is a percentage of the spring force value in VPforce Configurator</info>
 		<displayname>Aileron Spring Gain</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -241,6 +269,7 @@
 		<datatype>float</datatype>
 		<info>Elevator spring gain when "aircraft is spring centered" is enabled&lt;br&gt;&lt;br&gt;This is a percentage of the spring force value in VPforce Configurator</info>
 		<displayname>Elevator Spring Gain</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -255,6 +284,7 @@
 		<datatype>float</datatype>
 		<info>Rudder spring gain when "aircraft is spring centered" is enabled&lt;br&gt;&lt;br&gt;This is a percentage of the spring force value in VPforce Configurator</info>
 		<displayname>Rudder Spring Gain</displayname>
+		<XPLANE>true</XPLANE>
 	</defaults>
 	<defaults>
 		<Grouping>FlyByWire</Grouping>
@@ -264,6 +294,7 @@
 		<datatype>bool</datatype>
 		<info>Identify aircraft as FBW if Simconnect data is inaccurate</info>
 		<displayname>FlyByWire (FBW)</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 	</defaults>
@@ -278,6 +309,7 @@
 		<datatype>float</datatype>
 		<info>Fixed spring gain for FBW aircraft&lt;br&gt;&lt;br&gt;This is a percentage of the spring force value in VPforce Configurator</info>
 		<displayname>FBW Aileron Gain</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -291,6 +323,7 @@
 		<datatype>float</datatype>
 		<info>Fixed spring gain for FBW aircraft&lt;br&gt;&lt;br&gt;This is a percentage of the spring force value in VPforce Configurator</info>
 		<displayname>FBW Elevator Gain</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		</defaults>
 	<defaults>
@@ -304,6 +337,7 @@
 		<datatype>float</datatype>
 		<info>Fixed spring gain for FBW aircraft&lt;br&gt;&lt;br&gt;This is a percentage of the spring force value in VPforce Configurator</info>
 		<displayname>FBW Rudder Gain</displayname>
+		<XPLANE>true</XPLANE>
 		<pedals>true</pedals>
 		</defaults>
 	<defaults>
@@ -315,6 +349,7 @@
 		<datatype>float</datatype>
 		<info>Strength of elevator droop at rest (pushes stick forward)</info>
 		<displayname>Elevator Droop Moment</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -326,6 +361,7 @@
 		<datatype>float</datatype>
 		<info>Scaling of dynamic effects on elevator</info>
 		<displayname>Elevator Prop Flow</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -338,6 +374,7 @@
 		<datatype>anyfloat</datatype>
 		<info>Aircraft Prop Diameter</info>
 		<displayname>Prop Diameter</displayname>
+		<XPLANE>true</XPLANE>
 		<unit>m</unit>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
@@ -351,6 +388,7 @@
 		<datatype>float</datatype>
 		<info>Scaling of dynamic effects on rudder</info>
 		<displayname>Rudder Prop Flow</displayname>
+		<XPLANE>true</XPLANE>
 		<pedals>true</pedals>
 	</defaults>
 	<defaults>
@@ -363,6 +401,7 @@
 		<datatype>list</datatype>
 		<displayname>Rotor Blade Count</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -376,6 +415,7 @@
 		<datatype>float</datatype>
 		<info>Strength of spring force in Autopilot</info>
 		<displayname>Collective AP Spring Gain</displayname>
+		<XPLANE>true</XPLANE>
 		<collective>true</collective>
 	</defaults>
 	<defaults>
@@ -388,6 +428,7 @@
 		<datatype>float</datatype>
 		<displayname>Collective Dampening Gain</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<collective>true</collective>
 	</defaults>
 	<defaults>
@@ -510,11 +551,25 @@
 		<MSFS>true</MSFS>
 		<value>false</value>
 		<datatype>bool</datatype>
-		<info>TelemFFB sends axis position to sim.  Do not assign in game or SPAD.next</info>
+		<info>TelemFFB sends axis position to sim&lt;br&gt;&lt;br&gt;Required for Trim/AP Following&lt;br&gt;&lt;br&gt;** Do not assign in game or SPAD.next **</info>
 		<displayname>Axis Control</displayname>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
+	</defaults>
+	<defaults>
+		<Grouping>Axis Control</Grouping>
+		<order>90</order>
+		<name>telemffb_controls_axes</name>
+		<any>true</any>
+		<info>TelemFFB sends axis position to sim&lt;br&gt;&lt;br&gt;Required for Trim/AP Following</info>
+		<displayname>Axis Control</displayname>
+		<XPLANE>true</XPLANE>
+		<joystick>true</joystick>
+		<pedals>true</pedals>
+		<collective>true</collective>
+		<value>true</value>
+		<datatype>bool</datatype>
 	</defaults>
 	<defaults>
 		<Grouping>Axis Control</Grouping>
@@ -527,6 +582,7 @@
 		<datatype>float</datatype>
 		<info>Scaling of axis position sent to game</info>
 		<displayname>X Axis Scale</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -540,6 +596,7 @@
 		<datatype>float</datatype>
 		<info>Scaling of axis position sent to game</info>
 		<displayname>Y Axis Scale</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -553,6 +610,7 @@
 		<datatype>float</datatype>
 		<info>Scaling of axis position sent to game</info>
 		<displayname>Rudder (X) Axis Scale</displayname>
+		<XPLANE>true</XPLANE>
 		<pedals>true</pedals>
 	</defaults>
 	<defaults>
@@ -566,8 +624,6 @@
 		<info>Distance required to trigger a hands-on condition</info>
 		<displayname>Hands On Deadzone</displayname>
 		<joystick>true</joystick>
-		<pedals>true</pedals>
-		<collective>true</collective>
 	</defaults>
 	<defaults>
 		<Grouping>Axis Control</Grouping>
@@ -580,8 +636,6 @@
 		<info>Distance at which hands-off resumes (set lower than hands-on)</info>
 		<displayname>Hands Off Deadzone</displayname>
 		<joystick>true</joystick>
-		<pedals>true</pedals>
-		<collective>true</collective>
 	</defaults>
 	<defaults>
 		<Grouping>Axis Control</Grouping>
@@ -594,7 +648,7 @@
 		<pedals>true</pedals>
 		<value>false</value>
 		<datatype>bool</datatype>
-		<info>Use a custom Simconnect Variable</info>
+		<info>Custom Simconnect Variable - use "VARNAME" for simvars or "L:VARNAME" for LVARS</info>
 	</defaults>
 	<defaults>
 		<Grouping>Axis Control</Grouping>
@@ -647,7 +701,7 @@
 		<collective>true</collective>
 		<value>false</value>
 		<datatype>bool</datatype>
-		<info>Use a custom Simconnect Variable</info>
+		<info>Custom Simconnect Variable - use "VARNAME" for simvars or "L:VARNAME" for LVARS</info>
 	</defaults>
 	<defaults>
 		<Grouping>Axis Control</Grouping>
@@ -699,6 +753,7 @@
 		<datatype>bool</datatype>
 		<info>Enable physical stick movement with in-game trims</info>
 		<displayname>Trim Following</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 	</defaults>
@@ -713,6 +768,7 @@
 		<datatype>negfloat</datatype>
 		<info>Aileron/Cyclic Lateral physical movement scalar</info>
 		<displayname>X Trim Gain Physical</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -722,6 +778,7 @@
 		<prereq>trim_following</prereq>
 		<displayname>X Trim Gain Virtual</displayname>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<validvalues>-100,100</validvalues>
 		<value>0.2</value>
@@ -738,6 +795,7 @@
 		<datatype>negfloat</datatype>
 		<info>Elevator/Cyclic Longitudinal physical movement scalar</info>
 		<displayname>Y Trim Gain Physical</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -751,6 +809,7 @@
 		<datatype>negfloat</datatype>
 		<info>Adjust virtual y % so that trim ingame does not pitch aircraft when stick held. &lt;br&gt;&lt;br&gt; To configure, slowly apply nose down trim. if the nose goes up, raise the virtual % - if the nose goes down, lower the virtual % - you can go negative.</info>
 		<displayname>Y Trim Gain Virtual</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -764,6 +823,7 @@
 		<datatype>negfloat</datatype>
 		<info>Rudder physical trim movement scalar</info>
 		<displayname>Rudder Trim Gain (physical)</displayname>
+		<XPLANE>true</XPLANE>
 		<pedals>true</pedals>
 	</defaults>
 	<defaults>
@@ -776,6 +836,7 @@
 		<validvalues>-100,100</validvalues>
 		<datatype>negfloat</datatype>
 		<displayname>Rudder Trim Gain (virtual)</displayname>
+		<XPLANE>true</XPLANE>
 		<pedals>true</pedals>
 	</defaults>
 	<defaults>
@@ -784,10 +845,10 @@
 		<name>ap_following</name>
 		<prereq>telemffb_controls_axes</prereq>
 		<MSFS>true</MSFS>
-		<value>true</value>
 		<datatype>bool</datatype>
 		<info>Enable physical stick following of autopilot movements</info>
 		<displayname>Autopilot Following</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 	</defaults>
@@ -978,6 +1039,7 @@
 		<info>Simulate Elevator droop at low speeds &lt;20Kt</info>
 		<displayname>Elevator Droop</displayname>
 		<DCS>true</DCS>
+		<IL2>true</IL2>
 		<joystick>true</joystick>
 		<datatype>bool</datatype>
 	</defaults>
@@ -989,6 +1051,7 @@
 		<info>Simulate Elevator droop at low speeds &lt;20Kt</info>
 		<displayname>Elevator Droop</displayname>
 		<DCS>true</DCS>
+		<IL2>true</IL2>
 		<joystick>true</joystick>
 		<sliderfactor>0.5</sliderfactor>
 		<validvalues>0,100</validvalues>
@@ -1005,6 +1068,7 @@
 		<info>Enable Effective Translational Lift Shimmy</info>
 		<displayname>ETL Effect</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1020,6 +1084,7 @@
 		<info>Effective Translational Lift Shimmy Intensity</info>
 		<displayname>ETL Effect</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1036,6 +1101,7 @@
 		<displayname>ETL Start Speed</displayname>
 		<unit>m/s</unit>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1052,6 +1118,7 @@
 		<displayname>ETL Stop Speed</displayname>
 		<unit>m/s</unit>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1064,6 +1131,7 @@
 		<datatype>bool</datatype>
 		<displayname>Heli Engine/Rotor Rumble</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1081,6 +1149,7 @@
 		<info>peak rumble intensity for helicopter engine/rotor effect</info>
 		<displayname>Heli Engine/Rotor Rumble</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1093,6 +1162,7 @@
 		<datatype>bool</datatype>
 		<info>Vortex Ring State effect</info>
 		<displayname>VRS Effect</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1109,6 +1179,7 @@
 		<datatype>float</datatype>
 		<info>Max intensity of VRS effect</info>
 		<displayname>VRS Effect</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1123,6 +1194,7 @@
 		<info>Enable afterburner rumble effect</info>
 		<displayname>Afterburner Rumble</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1140,6 +1212,7 @@
 		<info>Max intensity of afterburner rumble effect</info>
 		<displayname>Afterburner Rumble</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1154,6 +1227,7 @@
 		<DCS>true</DCS>
 		<IL2>true</IL2>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1172,6 +1246,7 @@
 		<DCS>true</DCS>
 		<IL2>true</IL2>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1190,6 +1265,7 @@
 		<DCS>true</DCS>
 		<IL2>true</IL2>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1208,6 +1284,7 @@
 		<DCS>true</DCS>
 		<IL2>true</IL2>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1226,6 +1303,7 @@
 		<DCS>true</DCS>
 		<IL2>true</IL2>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1239,6 +1317,7 @@
 		<DCS>true</DCS>
 		<IL2>true</IL2>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1255,6 +1334,7 @@
 		<DCS>true</DCS>
 		<IL2>true</IL2>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1273,6 +1353,7 @@
 		<DCS>true</DCS>
 		<IL2>true</IL2>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1420,6 +1501,7 @@
 		<info>Enable or disable the AoA reduction force effect</info>
 		<displayname>AoA Reduction</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -1434,6 +1516,7 @@
 		<info>Max constant force to apply for AoA Reduction Effect&lt;br&gt;&lt;br&gt;This is a percentage of the constant force value in VPforce Configurator</info>
 		<displayname>AoA Reduction Max Force</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -1449,6 +1532,7 @@
 		<info>AoA at which applied force maxes out</info>
 		<displayname>Critical AoA Max</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -1464,6 +1548,7 @@
 		<info>AoA at which to begin applying force</info>
 		<displayname>Critical AoA Start</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -1474,6 +1559,7 @@
 		<datatype>bool</datatype>
 		<displayname>AoA/Stall Buffeting</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1490,6 +1576,7 @@
 		<info>Peak AoA buffeting intensity</info>
 		<displayname>AoA/Stall Buffeting</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1503,6 +1590,7 @@
 		<displayname>Buffeting Frequency</displayname>
 		<DCS>true</DCS>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1547,6 +1635,7 @@
 		<Grouping>Movement</Grouping>
 		<order>740</order>
 		<name>canopy_motion_effect_enabled</name>
+		<XPLANE>true</XPLANE>
 		<value>true</value>
 		<datatype>bool</datatype>
 		<displayname>Canopy Motion</displayname>
@@ -1560,6 +1649,7 @@
 		<order>740.1</order>
 		<name>canopy_motion_intensity</name>
 		<prereq>canopy_motion_effect_enabled</prereq>
+		<XPLANE>true</XPLANE>
 		<value>0.12</value>
 		<sliderfactor>0.4</sliderfactor>
 		<validvalues>0,100</validvalues>
@@ -1611,6 +1701,7 @@
 		<displayname>Deceleration Effect</displayname>
 		<DCS>true</DCS>
 		<IL2>true</IL2>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -1626,6 +1717,7 @@
 		<displayname>Deceleration Max Force</displayname>
 		<DCS>true</DCS>
 		<IL2>true</IL2>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		</defaults>
 	<defaults>
@@ -1637,6 +1729,7 @@
 		<DCS>true</DCS>
 		<IL2>true</IL2>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1655,6 +1748,7 @@
 		<DCS>true</DCS>
 		<IL2>true</IL2>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1668,6 +1762,7 @@
 		<datatype>bool</datatype>
 		<displayname>Gear Buffet</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1681,6 +1776,7 @@
 		<displayname>Gear Buffet</displayname>
 		<DCS>true</DCS>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1698,6 +1794,7 @@
 		<displayname>Buffeting Frequency</displayname>
 		<DCS>true</DCS>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1746,6 +1843,7 @@
 		<DCS>true</DCS>
 		<IL2>true</IL2>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1764,6 +1862,7 @@
 		<DCS>true</DCS>
 		<IL2>true</IL2>
 		<MSFS>true</MSFS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1776,6 +1875,7 @@
 		<datatype>bool</datatype>
 		<displayname>Overpeed Shake </displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1790,6 +1890,7 @@
 		<datatype>float</datatype>
 		<displayname>Overpeed Shake </displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1805,6 +1906,7 @@
 		<displayname>Overpeed Shake Start Speed</displayname>
 		<unit>m/s</unit>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1819,6 +1921,7 @@
 		<info>Enable/disable runway rumble effect</info>
 		<displayname>Runway Rumble</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 	</defaults>
@@ -1835,6 +1938,7 @@
 		<info>Peak runway rumble intensity</info>
 		<displayname>Runway Rumble</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		</defaults>
@@ -1846,6 +1950,7 @@
 		<value>false</value>
 		<datatype>bool</datatype>
 		<displayname>Nosewheel Shimmy</displayname>
+		<XPLANE>true</XPLANE>
 		<pedals>true</pedals>
 	</defaults>
 	<defaults>
@@ -1857,6 +1962,7 @@
 		<validvalues>0,100</validvalues>
 		<datatype>float</datatype>
 		<displayname>Nosewheel Shimmy</displayname>
+		<XPLANE>true</XPLANE>
 		<pedals>true</pedals>
 	</defaults>
 	<defaults>
@@ -1869,6 +1975,7 @@
 		<validvalues>0,100</validvalues>
 		<datatype>float</datatype>
 		<displayname>Nosewheel Shimmy min brakes</displayname>
+		<XPLANE>true</XPLANE>
 		<pedals>true</pedals>
 		</defaults>
 	<defaults>
@@ -1882,12 +1989,14 @@
 		<unit>m/s</unit>
 		<datatype>int</datatype>
 		<displayname>Nosewheel Shimmy min speed</displayname>
+		<XPLANE>true</XPLANE>
 		<pedals>true</pedals>
 	</defaults>
 	<defaults>
 		<Grouping>Buffeting</Grouping>
 		<order>790</order>
 		<name>speedbrake_buffet_effect_enabled</name>
+		<XPLANE>true</XPLANE>
 		<datatype>bool</datatype>
 		<displayname>Speedbrake Buffet</displayname>
 		<DCS>true</DCS>
@@ -1900,6 +2009,7 @@
 		<order>790.1</order>
 		<name>speedbrake_buffet_intensity</name>
 		<prereq>speedbrake_buffet_effect_enabled</prereq>
+		<XPLANE>true</XPLANE>
 		<value>0.15</value>
 		<sliderfactor>0.4</sliderfactor>
 		<validvalues>0,100</validvalues>
@@ -1915,6 +2025,7 @@
 		<Grouping>Movement</Grouping>
 		<order>791</order>
 		<name>speedbrake_motion_effect_enabled</name>
+		<XPLANE>true</XPLANE>
 		<datatype>bool</datatype>
 		<displayname>Speedbrake Motion</displayname>
 		<DCS>true</DCS>
@@ -1927,6 +2038,7 @@
 		<order>791.1</order>
 		<name>speedbrake_motion_intensity</name>
 		<prereq>speedbrake_motion_effect_enabled</prereq>
+		<XPLANE>true</XPLANE>
 		<value>0.15</value>
 		<sliderfactor>0.4</sliderfactor>
 		<validvalues>0,100</validvalues>
@@ -1946,6 +2058,7 @@
 		<datatype>bool</datatype>
 		<displayname>Spoiler Buffet</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1963,6 +2076,7 @@
 		<info>peak buffeting intensity when spoilers deployed</info>
 		<displayname>Spoiler Buffet</displayname>
 		<DCS>true</DCS>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		<collective>true</collective>
@@ -1971,6 +2085,7 @@
 		<Grouping>Movement</Grouping>
 		<order>793</order>
 		<name>spoiler_motion_effect_enabled</name>
+		<XPLANE>true</XPLANE>
 		<datatype>bool</datatype>
 		<displayname>Spoiler Motion</displayname>
 		<DCS>true</DCS>
@@ -1983,6 +2098,7 @@
 		<order>793.1</order>
 		<name>spoiler_motion_intensity</name>
 		<prereq>spoiler_motion_effect_enabled</prereq>
+		<XPLANE>true</XPLANE>
 		<value>0.15</value>
 		<sliderfactor>0.4</sliderfactor>
 		<validvalues>0,100</validvalues>
@@ -1999,10 +2115,10 @@
 		<order>800</order>
 		<name>uncoordinated_turn_effect_enabled</name>
 		<MSFS>true</MSFS>
-		<value>false</value>
 		<datatype>bool</datatype>
 		<info>Simulate lateral acceleration effect on stick in uncoordinated turns</info>
 		<displayname>Simulated Lateral Force</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -2016,6 +2132,7 @@
 		<validvalues>0,100</validvalues>
 		<datatype>float</datatype>
 		<displayname>Simulated Lateral Force Gain</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 	</defaults>
 	<defaults>
@@ -2065,6 +2182,7 @@
 		<datatype>bool</datatype>
 		<info>Force spring centering when in pause/slew mode</info>
 		<displayname>Center on Pause/Slew</displayname>
+		<XPLANE>true</XPLANE>
 		<joystick>true</joystick>
 		<pedals>true</pedals>
 		</defaults>
@@ -2161,6 +2279,7 @@
 		<value>-</value>
 		<datatype>path</datatype>
 		<info>Load a specific .vpconf file (created with VPForce Configurator)&lt;br&gt;&lt;br&gt;When using this function, it will remain active until set again by another sim, class, or model setting</info>
+		<XPLANE>true</XPLANE>
 	</defaults>
 	<models>
 		<name>etl_effect_intensity</name>
@@ -2973,13 +3092,6 @@
 		<sim>MSFS</sim>
 		<device>any</device>
 		</models>
-	<models>
-		<name>ap_following</name>
-		<model>Bell 407.*</model>
-		<value>false</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</models>
 	<models>
 		<name>etl_effect_intensity</name>
 		<model>Bell 407.*</model>
@@ -5897,6 +6009,306 @@
 		<sim>IL2</sim>
 		<device>any</device>
 		</models>
+	<models>
+		<name>type</name>
+		<model>Beechcraft Baron (B)?58.*</model>
+		<value>PropellerAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Beechcraft King Air C90B.*</model>
+		<value>TurbopropAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Cessna Citation X.*</model>
+		<value>JetAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Cessna Skyhawk.*</model>
+		<value>PropellerAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Cessna Skyhawk.*</model>
+		<value>PropellerAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Cirrus SR-22.*</model>
+		<value>PropellerAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Cirrus Vision SF50.*</model>
+		<value>JetAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Lancair Evolution.*</model>
+		<value>TurbopropAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>.*Piper PA-18 Super Cub</model>
+		<value>PropellerAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Stinson L5 Sentinel.*</model>
+		<value>PropellerAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Van's RV-10.*</model>
+		<value>PropellerAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Schleicher ASK 21.*</model>
+		<value>GliderAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>joystick_trim_follow_gain_physical_x</name>
+		<model>Schleicher ASK 21.*</model>
+		<value>0.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</models>
+	<models>
+		<name>joystick_trim_follow_gain_virtual_x</name>
+		<model>Schleicher ASK 21.*</model>
+		<value>0.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Robinson R22 Beta II.*</model>
+		<value>Helicopter</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Sikorsky S(-)?76C.*</model>
+		<value>Helicopter</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>rotor_blade_count</name>
+		<model>Sikorsky S(-)?76C.*</model>
+		<value>4</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>F-14 Tomcat.*</model>
+		<value>JetAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>F-4 Phantom II.*</model>
+		<value>JetAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Aero-Works Aerolite 103.*</model>
+		<value>PropellerAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Cessna 172 SP Skyhawk.*</model>
+		<value>PropellerAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>Cirrus personal jet</model>
+		<value>JetAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<models>
+		<name>type</name>
+		<model>King Air C90.*</model>
+		<value>TurbopropAircraft</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</models>
+	<classdefaults>
+		<name>engine_jet_rumble_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>engine_prop_rumble_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>engine_prop_rumble_enabled</name>
+		<type>TurbopropAircraft</type>
+		<value>true</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>flaps_motion_effect_enabled</name>
+		<type>GliderAircraft</type>
+		<value>true</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>flaps_motion_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>flaps_motion_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>flaps_motion_effect_enabled</name>
+		<type>TurbopropAircraft</type>
+		<value>true</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_buffet_speed_high</name>
+		<type>JetAircraft</type>
+		<value>275</value>
+		<unit>kt</unit>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_buffet_speed_high</name>
+		<type>TurbopropAircraft</type>
+		<value>210</value>
+		<unit>kt</unit>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_buffet_speed_high</name>
+		<type>PropellerAircraft</type>
+		<value>150</value>
+		<unit>kt</unit>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_buffet_speed_low</name>
+		<type>JetAircraft</type>
+		<value>190</value>
+		<unit>kt</unit>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_buffet_speed_low</name>
+		<type>TurbopropAircraft</type>
+		<value>160</value>
+		<unit>kt</unit>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_buffet_speed_low</name>
+		<type>PropellerAircraft</type>
+		<value>100</value>
+		<unit>kt</unit>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_motion_effect_enabled</name>
+		<type>GliderAircraft</type>
+		<value>true</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_motion_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_motion_effect_enabled</name>
+		<type>Helicopter</type>
+		<value>false</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_motion_effect_enabled</name>
+		<type>TurbopropAircraft</type>
+		<value>true</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>type</name>
+		<type>JetAircraft</type>
+		<value>JetAircraft</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>type</name>
+		<type>PropellerAircraft</type>
+		<value>PropellerAircraft</value>
+		<sim>any</sim>
+		<device>any</device>
+	</classdefaults>
 	<classdefaults>
 		<name>afterburner_effect_enabled</name>
 		<type>JetAircraft</type>
@@ -5905,6 +6317,507 @@
 		<device>any</device>
 	</classdefaults>
 	<classdefaults>
+		<name>aoa_buffeting_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_buffeting_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_effect_enabled</name>
+		<type>JetrAircraft</type>
+		<value>false</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_reduction_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>false</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_reduction_max_force</name>
+		<type>JetAircraft</type>
+		<value>1.0</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>collective_dampening_gain</name>
+		<type>Helicopter</type>
+		<value>0.4</value>
+		<sim>DCS</sim>
+		<device>collective</device>
+	</classdefaults>
+	<classdefaults>
+		<name>critical_aoa_max</name>
+		<type>JetAircraft</type>
+		<value>25</value>
+		<unit>deg</unit>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>critical_aoa_start</name>
+		<type>JetAircraft</type>
+		<value>22</value>
+		<unit>deg</unit>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_droop_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_droop_enabled</name>
+		<type>JetAircraft</type>
+		<value>false</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>engine_jet_rumble_enabled</name>
+		<type>Helicopter</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>engine_rotor_rumble_enabled</name>
+		<type>Helicopter</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>etl_effect_enable</name>
+		<type>Helicopter</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>etl_effect_intensity</name>
+		<type>Helicopter</type>
+		<value>0.25</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>etl_start_speed</name>
+		<type>Helicopter</type>
+		<value>8</value>
+		<unit>m/s</unit>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>etl_stop_speed</name>
+		<type>Helicopter</type>
+		<value>16</value>
+		<unit>m/s</unit>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_motion_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_effect_curvature</name>
+		<type>JetAircraft</type>
+		<value>2.5</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_effect_curvature</name>
+		<type>PropellerAircraft</type>
+		<value>2.5</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_effect_enable</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_effect_enable</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_effect_max_intensity</name>
+		<type>JetAircraft</type>
+		<value>0.8</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_effect_max_intensity</name>
+		<type>PropellerAircraft</type>
+		<value>0.8</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_max_gs</name>
+		<type>JetAircraft</type>
+		<value>7.0</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_max_gs</name>
+		<type>PropellerAircraft</type>
+		<value>7.0</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_min_gs</name>
+		<type>JetAircraft</type>
+		<value>1.1</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_min_gs</name>
+		<type>PropellerAircraft</type>
+		<value>1.4</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>jet_engine_rumble_intensity</name>
+		<type>Helicopter</type>
+		<value>0.01</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>jet_engine_rumble_intensity</name>
+		<type>JetAircraft</type>
+		<value>0.05</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>overspeed_shake_intensity</name>
+		<type>Helicopter</type>
+		<value>0.2</value>
+		<sim>DCS</sim>
+		<device>collective</device>
+	</classdefaults>
+	<classdefaults>
+		<name>overspeed_shake_intensity</name>
+		<type>Helicopter</type>
+		<value>0.2</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>overspeed_shake_intensity</name>
+		<type>Helicopter</type>
+		<value>0.2</value>
+		<sim>DCS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>overspeed_shake_start</name>
+		<type>Helicopter</type>
+		<value>80</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_dampening_gain</name>
+		<type>Helicopter</type>
+		<value>0.1</value>
+		<sim>DCS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_dampening_gain</name>
+		<type>JetAircraft</type>
+		<value>0.5</value>
+		<sim>DCS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_dampening_gain</name>
+		<type>PropellerAircraft</type>
+		<value>0.6</value>
+		<sim>DCS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_spring_gain</name>
+		<type>Helicopter</type>
+		<value>0.3</value>
+		<sim>DCS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_spring_gain</name>
+		<type>JetAircraft</type>
+		<value>0.6</value>
+		<sim>DCS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_spring_gain</name>
+		<type>PropellerAircraft</type>
+		<value>1.0</value>
+		<sim>DCS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_spring_mode</name>
+		<type>Helicopter</type>
+		<value>No Spring</value>
+		<sim>DCS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_spring_mode</name>
+		<type>JetAircraft</type>
+		<value>Static Spring</value>
+		<sim>DCS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_spring_mode</name>
+		<type>PropellerAircraft</type>
+		<value>Dynamic Spring</value>
+		<sim>DCS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_trimming_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_trimming_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rotor_blade_count</name>
+		<type>Helicopter</type>
+		<value>2</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>speedbrake_buffet_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>speedbrake_buffet_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>speedbrake_motion_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>speedbrake_motion_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>spoiler_buffet_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>spoiler_buffet_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>spoiler_motion_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>spoiler_motion_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_workaround</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_workaround</name>
+		<type>JetAircraft</type>
+		<value>false</value>
+		<sim>DCS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>type</name>
+		<type>Helicopter</type>
+		<value>Helicopter</value>
+		<sim>DCS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_droop_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>IL2</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_droop_enabled</name>
+		<type>JetAircraft</type>
+		<value>false</value>
+		<sim>IL2</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_motion_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>IL2</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_effect_curvature</name>
+		<type>JetAircraft</type>
+		<value>2.5</value>
+		<sim>IL2</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_effect_curvature</name>
+		<type>PropellerAircraft</type>
+		<value>2.5</value>
+		<sim>IL2</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_effect_enable</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>IL2</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_effect_enable</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>IL2</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_effect_max_intensity</name>
+		<type>JetAircraft</type>
+		<value>0.8</value>
+		<sim>IL2</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_effect_max_intensity</name>
+		<type>PropellerAircraft</type>
+		<value>0.8</value>
+		<sim>IL2</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_max_gs</name>
+		<type>JetAircraft</type>
+		<value>7.0</value>
+		<sim>IL2</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_max_gs</name>
+		<type>PropellerAircraft</type>
+		<value>7.0</value>
+		<sim>IL2</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_min_gs</name>
+		<type>JetAircraft</type>
+		<value>1.1</value>
+		<sim>IL2</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gforce_min_gs</name>
+		<type>PropellerAircraft</type>
+		<value>1.4</value>
+		<sim>IL2</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>jet_engine_rumble_intensity</name>
+		<type>JetAircraft</type>
+		<value>0.05</value>
+		<sim>IL2</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
 		<name>afterburner_effect_enabled</name>
 		<type>JetAircraft</type>
 		<value>true</value>
@@ -5912,67 +6825,11 @@
 		<device>any</device>
 	</classdefaults>
 	<classdefaults>
-		<name>max_aileron_coeff</name>
-		<type>TurbopropAircraft</type>
-		<value>0.5</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>max_elevator_coeff</name>
-		<type>TurbopropAircraft</type>
-		<value>0.5</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>max_rudder_coeff</name>
-		<type>TurbopropAircraft</type>
-		<value>0.5</value>
-		<sim>MSFS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>max_aileron_coeff</name>
-		<type>PropellerAircraft</type>
-		<value>1</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>max_elevator_coeff</name>
-		<type>PropellerAircraft</type>
-		<value>1</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>max_rudder_coeff</name>
-		<type>PropellerAircraft</type>
-		<value>1</value>
-		<sim>MSFS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>max_aileron_coeff</name>
+		<name>aileron_force_trim</name>
 		<type>GliderAircraft</type>
-		<value>1</value>
+		<value>false</value>
 		<sim>MSFS</sim>
 		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>max_elevator_coeff</name>
-		<type>GliderAircraft</type>
-		<value>1</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>max_rudder_coeff</name>
-		<type>GliderAircraft</type>
-		<value>1</value>
-		<sim>MSFS</sim>
-		<device>pedals</device>
 	</classdefaults>
 	<classdefaults>
 		<name>aileron_gain</name>
@@ -6069,21 +6926,7 @@
 		<name>aoa_buffeting_enabled</name>
 		<type>JetAircraft</type>
 		<value>true</value>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>aoa_buffeting_enabled</name>
-		<type>JetAircraft</type>
-		<value>true</value>
 		<sim>MSFS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>aoa_buffeting_enabled</name>
-		<type>PropellerAircraft</type>
-		<value>true</value>
-		<sim>DCS</sim>
 		<device>any</device>
 	</classdefaults>
 	<classdefaults>
@@ -6111,21 +6954,7 @@
 		<name>aoa_effect_enabled</name>
 		<type>JetrAircraft</type>
 		<value>false</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>aoa_effect_enabled</name>
-		<type>JetrAircraft</type>
-		<value>false</value>
 		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>aoa_effect_enabled</name>
-		<type>PropellerAircraft</type>
-		<value>false</value>
-		<sim>DCS</sim>
 		<device>joystick</device>
 	</classdefaults>
 	<classdefaults>
@@ -6146,21 +6975,7 @@
 		<name>aoa_reduction_effect_enabled</name>
 		<type>JetAircraft</type>
 		<value>false</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>aoa_reduction_effect_enabled</name>
-		<type>JetAircraft</type>
-		<value>false</value>
 		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>aoa_reduction_max_force</name>
-		<type>JetAircraft</type>
-		<value>1.0</value>
-		<sim>DCS</sim>
 		<device>joystick</device>
 	</classdefaults>
 	<classdefaults>
@@ -6192,91 +7007,68 @@
 		<device>joystick</device>
 	</classdefaults>
 	<classdefaults>
-		<name>collective_ap_spring_gain</name>
-		<type>Helicopter</type>
-		<value>1.0</value>
-		<sim>MSFS</sim>
-		<device>collective</device>
-	</classdefaults>
-	<classdefaults>
-		<name>collective_ap_spring_gain</name>
-		<type>HPGHelicopter</type>
-		<value>1.0</value>
-		<sim>MSFS</sim>
-		<device>collective</device>
-	</classdefaults>
-	<classdefaults>
-		<name>collective_dampening_gain</name>
-		<type>Helicopter</type>
-		<value>0.4</value>
-		<sim>DCS</sim>
-		<device>collective</device>
-	</classdefaults>
-	<classdefaults>
-		<name>collective_dampening_gain</name>
-		<type>Helicopter</type>
-		<value>0.4</value>
-		<sim>MSFS</sim>
-		<device>collective</device>
-	</classdefaults>
-	<classdefaults>
-		<name>collective_dampening_gain</name>
-		<type>HPGHelicopter</type>
-		<value>0.4</value>
-		<sim>MSFS</sim>
-		<device>collective</device>
-	</classdefaults>
-	<classdefaults>
-		<name>critical_aoa_max</name>
-		<type>JetAircraft</type>
-		<value>25</value>
-		<unit>deg</unit>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>critical_aoa_max</name>
-		<type>JetAircraft</type>
-		<value>25</value>
-		<unit>deg</unit>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>critical_aoa_start</name>
-		<type>JetAircraft</type>
-		<value>22</value>
-		<unit>deg</unit>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>critical_aoa_start</name>
-		<type>JetAircraft</type>
-		<value>22</value>
-		<unit>deg</unit>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>cyclic_spring_gain</name>
-		<type>Helicopter</type>
-		<value>0.8</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>cyclic_spring_gain</name>
-		<type>HPGHelicopter</type>
-		<value>0.8</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>elevator_droop_enabled</name>
-		<type>PropellerAircraft</type>
+		<name>ap_following</name>
+		<type>GilderAircraft</type>
 		<value>true</value>
-		<sim>DCS</sim>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>collective_ap_spring_gain</name>
+		<type>Helicopter</type>
+		<value>1.0</value>
+		<sim>MSFS</sim>
+		<device>collective</device>
+	</classdefaults>
+	<classdefaults>
+		<name>collective_ap_spring_gain</name>
+		<type>HPGHelicopter</type>
+		<value>1.0</value>
+		<sim>MSFS</sim>
+		<device>collective</device>
+	</classdefaults>
+	<classdefaults>
+		<name>collective_dampening_gain</name>
+		<type>Helicopter</type>
+		<value>0.4</value>
+		<sim>MSFS</sim>
+		<device>collective</device>
+	</classdefaults>
+	<classdefaults>
+		<name>collective_dampening_gain</name>
+		<type>HPGHelicopter</type>
+		<value>0.4</value>
+		<sim>MSFS</sim>
+		<device>collective</device>
+	</classdefaults>
+	<classdefaults>
+		<name>critical_aoa_max</name>
+		<type>JetAircraft</type>
+		<value>25</value>
+		<unit>deg</unit>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>critical_aoa_start</name>
+		<type>JetAircraft</type>
+		<value>22</value>
+		<unit>deg</unit>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>cyclic_spring_gain</name>
+		<type>Helicopter</type>
+		<value>0.8</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>cyclic_spring_gain</name>
+		<type>HPGHelicopter</type>
+		<value>0.8</value>
+		<sim>MSFS</sim>
 		<device>joystick</device>
 	</classdefaults>
 	<classdefaults>
@@ -6304,6 +7096,13 @@
 		<name>elevator_droop_moment</name>
 		<type>TurbopropAircraft</type>
 		<value>0.1</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_force_trim</name>
+		<type>GliderAircraft</type>
+		<value>true</value>
 		<sim>MSFS</sim>
 		<device>joystick</device>
 	</classdefaults>
@@ -6372,13 +7171,6 @@
 	</classdefaults>
 	<classdefaults>
 		<name>engine_jet_rumble_enabled</name>
-		<type>Helicopter</type>
-		<value>true</value>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>engine_jet_rumble_enabled</name>
 		<type>HPGHelicopter</type>
 		<value>true</value>
 		<sim>MSFS</sim>
@@ -6392,38 +7184,10 @@
 		<device>any</device>
 	</classdefaults>
 	<classdefaults>
-		<name>engine_jet_rumble_enabled</name>
-		<type>JetAircraft</type>
-		<value>true</value>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>engine_prop_rumble_enabled</name>
-		<type>PropellerAircraft</type>
-		<value>true</value>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>engine_prop_rumble_enabled</name>
-		<type>TurbopropAircraft</type>
-		<value>true</value>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
 		<name>engine_rotor_rumble_enabled</name>
 		<type>Helicopter</type>
 		<value>true</value>
 		<sim>MSFS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>engine_rotor_rumble_enabled</name>
-		<type>Helicopter</type>
-		<value>true</value>
-		<sim>DCS</sim>
 		<device>any</device>
 	</classdefaults>
 	<classdefaults>
@@ -6431,13 +7195,6 @@
 		<type>HPGHelicopter</type>
 		<value>true</value>
 		<sim>MSFS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>etl_effect_enable</name>
-		<type>Helicopter</type>
-		<value>true</value>
-		<sim>DCS</sim>
 		<device>any</device>
 	</classdefaults>
 	<classdefaults>
@@ -6452,13 +7209,6 @@
 		<type>HPGHelicopter</type>
 		<value>true</value>
 		<sim>MSFS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>etl_effect_intensity</name>
-		<type>Helicopter</type>
-		<value>0.25</value>
-		<sim>DCS</sim>
 		<device>any</device>
 	</classdefaults>
 	<classdefaults>
@@ -6480,14 +7230,6 @@
 		<type>Helicopter</type>
 		<value>8</value>
 		<unit>m/s</unit>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>etl_start_speed</name>
-		<type>Helicopter</type>
-		<value>8</value>
-		<unit>m/s</unit>
 		<sim>MSFS</sim>
 		<device>any</device>
 	</classdefaults>
@@ -6504,14 +7246,6 @@
 		<type>Helicopter</type>
 		<value>16</value>
 		<unit>m/s</unit>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>etl_stop_speed</name>
-		<type>Helicopter</type>
-		<value>16</value>
-		<unit>m/s</unit>
 		<sim>MSFS</sim>
 		<device>any</device>
 	</classdefaults>
@@ -6524,32 +7258,39 @@
 		<device>any</device>
 	</classdefaults>
 	<classdefaults>
-		<name>flaps_motion_effect_enabled</name>
+		<name>force_trim_button</name>
 		<type>GliderAircraft</type>
-		<value>true</value>
-		<sim>any</sim>
-		<device>any</device>
+		<value>0</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
 	</classdefaults>
 	<classdefaults>
-		<name>flaps_motion_effect_enabled</name>
-		<type>JetAircraft</type>
-		<value>true</value>
-		<sim>any</sim>
-		<device>any</device>
+		<name>force_trim_button</name>
+		<type>Helicopter</type>
+		<value>0</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
 	</classdefaults>
 	<classdefaults>
-		<name>flaps_motion_effect_enabled</name>
-		<type>PropellerAircraft</type>
-		<value>true</value>
-		<sim>any</sim>
-		<device>any</device>
+		<name>force_trim_button</name>
+		<type>Helicopter</type>
+		<value>0</value>
+		<sim>MSFS</sim>
+		<device>collective</device>
 	</classdefaults>
 	<classdefaults>
-		<name>flaps_motion_effect_enabled</name>
-		<type>TurbopropAircraft</type>
-		<value>true</value>
-		<sim>any</sim>
-		<device>any</device>
+		<name>force_trim_button</name>
+		<type>HPGHelicopter</type>
+		<value>0</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>force_trim_button</name>
+		<type>HPGHelicopter</type>
+		<value>0</value>
+		<sim>MSFS</sim>
+		<device>collective</device>
 	</classdefaults>
 	<classdefaults>
 		<name>force_trim_enabled</name>
@@ -6573,55 +7314,6 @@
 		<device>joystick</device>
 	</classdefaults>
 	<classdefaults>
-		<name>elevator_force_trim</name>
-		<type>GliderAircraft</type>
-		<value>true</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>aileron_force_trim</name>
-		<type>GliderAircraft</type>
-		<value>false</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>force_trim_button</name>
-		<type>GliderAircraft</type>
-		<value>0</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>force_trim_button</name>
-		<type>Helicopter</type>
-		<value>0</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>force_trim_button</name>
-		<type>Helicopter</type>
-		<value>0</value>
-		<sim>MSFS</sim>
-		<device>collective</device>
-	</classdefaults>
-	<classdefaults>
-		<name>force_trim_button</name>
-		<type>HPGHelicopter</type>
-		<value>0</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>force_trim_button</name>
-		<type>HPGHelicopter</type>
-		<value>0</value>
-		<sim>MSFS</sim>
-		<device>collective</device>
-	</classdefaults>
-	<classdefaults>
 		<name>force_trim_reset_button</name>
 		<type>GliderAircraft</type>
 		<value>0</value>
@@ -6655,27 +7347,6 @@
 		<value>0</value>
 		<sim>MSFS</sim>
 		<device>collective</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gear_motion_effect_enabled</name>
-		<type>GliderAircraft</type>
-		<value>true</value>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gear_motion_effect_enabled</name>
-		<type>JetAircraft</type>
-		<value>true</value>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gear_motion_effect_enabled</name>
-		<type>Helicopter</type>
-		<value>false</value>
-		<sim>any</sim>
-		<device>any</device>
 	</classdefaults>
 	<classdefaults>
 		<name>gear_motion_effect_enabled</name>
@@ -6683,215 +7354,6 @@
 		<value>false</value>
 		<sim>MSFS</sim>
 		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gear_motion_effect_enabled</name>
-		<type>PropellerAircraft</type>
-		<value>true</value>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gear_motion_effect_enabled</name>
-		<type>PropellerAircraft</type>
-		<value>true</value>
-		<sim>IL2</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gear_motion_effect_enabled</name>
-		<type>TurbopropAircraft</type>
-		<value>true</value>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gear_buffet_speed_low</name>
-		<type>JetAircraft</type>
-		<value>190</value>
-		<unit>kt</unit>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gear_buffet_speed_high</name>
-		<type>JetAircraft</type>
-		<value>275</value>
-		<unit>kt</unit>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gear_buffet_speed_low</name>
-		<type>TurbopropAircraft</type>
-		<value>160</value>
-		<unit>kt</unit>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gear_buffet_speed_high</name>
-		<type>TurbopropAircraft</type>
-		<value>210</value>
-		<unit>kt</unit>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gear_buffet_speed_low</name>
-		<type>PropellerAircraft</type>
-		<value>100</value>
-		<unit>kt</unit>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gear_buffet_speed_high</name>
-		<type>PropellerAircraft</type>
-		<value>150</value>
-		<unit>kt</unit>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_effect_enable</name>
-		<type>JetAircraft</type>
-		<value>true</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_effect_max_intensity</name>
-		<type>JetAircraft</type>
-		<value>0.8</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_effect_curvature</name>
-		<type>JetAircraft</type>
-		<value>2.5</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_min_gs</name>
-		<type>JetAircraft</type>
-		<value>1.1</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_max_gs</name>
-		<type>JetAircraft</type>
-		<value>7.0</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_effect_enable</name>
-		<type>PropellerAircraft</type>
-		<value>true</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_effect_max_intensity</name>
-		<type>PropellerAircraft</type>
-		<value>0.8</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_effect_curvature</name>
-		<type>PropellerAircraft</type>
-		<value>2.5</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_min_gs</name>
-		<type>PropellerAircraft</type>
-		<value>1.4</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_max_gs</name>
-		<type>PropellerAircraft</type>
-		<value>7.0</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_effect_enable</name>
-		<type>JetAircraft</type>
-		<value>true</value>
-		<sim>IL2</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_effect_max_intensity</name>
-		<type>JetAircraft</type>
-		<value>0.8</value>
-		<sim>IL2</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_effect_curvature</name>
-		<type>JetAircraft</type>
-		<value>2.5</value>
-		<sim>IL2</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_min_gs</name>
-		<type>JetAircraft</type>
-		<value>1.1</value>
-		<sim>IL2</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_max_gs</name>
-		<type>JetAircraft</type>
-		<value>7.0</value>
-		<sim>IL2</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_effect_enable</name>
-		<type>PropellerAircraft</type>
-		<value>true</value>
-		<sim>IL2</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_effect_max_intensity</name>
-		<type>PropellerAircraft</type>
-		<value>0.8</value>
-		<sim>IL2</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_effect_curvature</name>
-		<type>PropellerAircraft</type>
-		<value>2.5</value>
-		<sim>IL2</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_min_gs</name>
-		<type>PropellerAircraft</type>
-		<value>1.4</value>
-		<sim>IL2</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>gforce_max_gs</name>
-		<type>PropellerAircraft</type>
-		<value>7.0</value>
-		<sim>IL2</sim>
-		<device>joystick</device>
 	</classdefaults>
 	<classdefaults>
 		<name>hands_off_deadzone</name>
@@ -6932,13 +7394,6 @@
 		<name>jet_engine_rumble_intensity</name>
 		<type>Helicopter</type>
 		<value>0.01</value>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>jet_engine_rumble_intensity</name>
-		<type>Helicopter</type>
-		<value>0.01</value>
 		<sim>MSFS</sim>
 		<device>any</device>
 	</classdefaults>
@@ -6947,20 +7402,6 @@
 		<type>HPGHelicopter</type>
 		<value>0.01</value>
 		<sim>MSFS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>jet_engine_rumble_intensity</name>
-		<type>JetAircraft</type>
-		<value>0.05</value>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>jet_engine_rumble_intensity</name>
-		<type>JetAircraft</type>
-		<value>0.05</value>
-		<sim>IL2</sim>
 		<device>any</device>
 	</classdefaults>
 	<classdefaults>
@@ -7146,24 +7587,87 @@
 		<device>joystick</device>
 	</classdefaults>
 	<classdefaults>
-		<name>overspeed_shake_intensity</name>
-		<type>Helicopter</type>
-		<value>0.2</value>
-		<sim>DCS</sim>
-		<device>collective</device>
-	</classdefaults>
-	<classdefaults>
-		<name>overspeed_shake_intensity</name>
-		<type>Helicopter</type>
-		<value>0.2</value>
-		<sim>DCS</sim>
+		<name>max_aileron_coeff</name>
+		<type>TurbopropAircraft</type>
+		<value>0.5</value>
+		<sim>MSFS</sim>
 		<device>joystick</device>
 	</classdefaults>
 	<classdefaults>
-		<name>overspeed_shake_intensity</name>
-		<type>Helicopter</type>
-		<value>0.2</value>
-		<sim>DCS</sim>
+		<name>max_aileron_coeff</name>
+		<type>JetAircraft</type>
+		<value>0.7</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_aileron_coeff</name>
+		<type>PropellerAircraft</type>
+		<value>0.5</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_aileron_coeff</name>
+		<type>GliderAircraft</type>
+		<value>0.5</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_elevator_coeff</name>
+		<type>TurbopropAircraft</type>
+		<value>0.5</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_elevator_coeff</name>
+		<type>JetAircraft</type>
+		<value>0.5</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_elevator_coeff</name>
+		<type>PropellerAircraft</type>
+		<value>0.5</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_elevator_coeff</name>
+		<type>GliderAircraft</type>
+		<value>0.3</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_rudder_coeff</name>
+		<type>TurbopropAircraft</type>
+		<value>0.5</value>
+		<sim>MSFS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_rudder_coeff</name>
+		<type>JetAircraft</type>
+		<value>0.6</value>
+		<sim>MSFS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_rudder_coeff</name>
+		<type>PropellerAircraft</type>
+		<value>0.4</value>
+		<sim>MSFS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_rudder_coeff</name>
+		<type>GliderAircraft</type>
+		<value>0.3</value>
+		<sim>MSFS</sim>
 		<device>pedals</device>
 	</classdefaults>
 	<classdefaults>
@@ -7207,13 +7711,6 @@
 		<value>0.2</value>
 		<sim>MSFS</sim>
 		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>overspeed_shake_start</name>
-		<type>Helicopter</type>
-		<value>80</value>
-		<sim>DCS</sim>
-		<device>any</device>
 	</classdefaults>
 	<classdefaults>
 		<name>overspeed_shake_start</name>
@@ -7255,27 +7752,6 @@
 		<type>PropellerAircraft</type>
 		<value>0.6</value>
 		<sim>MSFS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>pedal_dampening_gain</name>
-		<type>Helicopter</type>
-		<value>0.1</value>
-		<sim>DCS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>pedal_dampening_gain</name>
-		<type>JetAircraft</type>
-		<value>0.5</value>
-		<sim>DCS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>pedal_dampening_gain</name>
-		<type>PropellerAircraft</type>
-		<value>0.6</value>
-		<sim>DCS</sim>
 		<device>pedals</device>
 	</classdefaults>
 	<classdefaults>
@@ -7307,62 +7783,6 @@
 		<device>pedals</device>
 	</classdefaults>
 	<classdefaults>
-		<name>pedal_spring_gain</name>
-		<type>Helicopter</type>
-		<value>0.3</value>
-		<sim>DCS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>pedal_spring_gain</name>
-		<type>JetAircraft</type>
-		<value>0.6</value>
-		<sim>DCS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>pedal_spring_gain</name>
-		<type>PropellerAircraft</type>
-		<value>1.0</value>
-		<sim>DCS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>pedal_spring_mode</name>
-		<type>Helicopter</type>
-		<value>No Spring</value>
-		<sim>DCS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>pedal_spring_mode</name>
-		<type>JetAircraft</type>
-		<value>Static Spring</value>
-		<sim>DCS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>pedal_spring_mode</name>
-		<type>PropellerAircraft</type>
-		<value>Dynamic Spring</value>
-		<sim>DCS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>pedal_trimming_enabled</name>
-		<type>PropellerAircraft</type>
-		<value>true</value>
-		<sim>DCS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>pedal_trimming_enabled</name>
-		<type>JetAircraft</type>
-		<value>true</value>
-		<sim>DCS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
 		<name>prop_diameter</name>
 		<type>PropellerAircraft</type>
 		<value>1.7</value>
@@ -7376,13 +7796,6 @@
 		<value>2.7</value>
 		<unit>m</unit>
 		<sim>MSFS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>rotor_blade_count</name>
-		<type>Helicopter</type>
-		<value>2</value>
-		<sim>DCS</sim>
 		<device>any</device>
 	</classdefaults>
 	<classdefaults>
@@ -7512,34 +7925,6 @@
 		<device>pedals</device>
 	</classdefaults>
 	<classdefaults>
-		<name>speedbrake_buffet_effect_enabled</name>
-		<type>JetAircraft</type>
-		<value>true</value>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>speedbrake_buffet_effect_enabled</name>
-		<type>PropellerAircraft</type>
-		<value>false</value>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>speedbrake_motion_effect_enabled</name>
-		<type>JetAircraft</type>
-		<value>true</value>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>speedbrake_motion_effect_enabled</name>
-		<type>PropellerAircraft</type>
-		<value>false</value>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
 		<name>spoiler_buffet_effect_enabled</name>
 		<type>GliderAircraft</type>
 		<value>true</value>
@@ -7550,21 +7935,7 @@
 		<name>spoiler_buffet_effect_enabled</name>
 		<type>JetAircraft</type>
 		<value>true</value>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>spoiler_buffet_effect_enabled</name>
-		<type>JetAircraft</type>
-		<value>true</value>
 		<sim>MSFS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>spoiler_buffet_effect_enabled</name>
-		<type>PropellerAircraft</type>
-		<value>false</value>
-		<sim>DCS</sim>
 		<device>any</device>
 	</classdefaults>
 	<classdefaults>
@@ -7592,21 +7963,7 @@
 		<name>spoiler_motion_effect_enabled</name>
 		<type>JetAircraft</type>
 		<value>true</value>
-		<sim>DCS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>spoiler_motion_effect_enabled</name>
-		<type>JetAircraft</type>
-		<value>true</value>
 		<sim>MSFS</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>spoiler_motion_effect_enabled</name>
-		<type>PropellerAircraft</type>
-		<value>false</value>
-		<sim>DCS</sim>
 		<device>any</device>
 	</classdefaults>
 	<classdefaults>
@@ -7646,80 +8003,66 @@
 	</classdefaults>
 	<classdefaults>
 		<name>trim_following</name>
-		<type>JetAircraft</type>
-		<value>false</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>trim_following</name>
-		<type>JetAircraft</type>
-		<value>false</value>
-		<sim>MSFS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>trim_following</name>
-		<type>PropellerAircraft</type>
-		<value>false</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>trim_following</name>
-		<type>PropellerAircraft</type>
-		<value>false</value>
-		<sim>MSFS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>trim_following</name>
-		<type>TurbopropAircraft</type>
-		<value>false</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>trim_following</name>
-		<type>TurbopropAircraft</type>
-		<value>false</value>
-		<sim>MSFS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>trim_workaround</name>
-		<type>PropellerAircraft</type>
-		<value>false</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>trim_workaround</name>
-		<type>PropellerAircraft</type>
-		<value>false</value>
-		<sim>DCS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>type</name>
-		<type>GliderAircraft</type>
-		<value>GliderAircraft</value>
-		<sim>MSFS</sim>
-		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>type</name>
-		<type>GliderAircraft</type>
-		<value>GliderAircraft</value>
-		<sim>MSFS</sim>
-		<device>pedals</device>
-	</classdefaults>
-	<classdefaults>
-		<name>type</name>
 		<type>Helicopter</type>
-		<value>Helicopter</value>
-		<sim>DCS</sim>
-		<device>any</device>
+		<value>false</value>
+		<sim>MSFS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>JetAircraft</type>
+		<value>false</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>JetAircraft</type>
+		<value>false</value>
+		<sim>MSFS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>MSFS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>TurbopropAircraft</type>
+		<value>false</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>TurbopropAircraft</type>
+		<value>false</value>
+		<sim>MSFS</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>type</name>
+		<type>GliderAircraft</type>
+		<value>GliderAircraft</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>type</name>
+		<type>GliderAircraft</type>
+		<value>GliderAircraft</value>
+		<sim>MSFS</sim>
+		<device>pedals</device>
 	</classdefaults>
 	<classdefaults>
 		<name>type</name>
@@ -7739,22 +8082,8 @@
 		<name>type</name>
 		<type>JetAircraft</type>
 		<value>JetAircraft</value>
-		<sim>any</sim>
-		<device>any</device>
-	</classdefaults>
-	<classdefaults>
-		<name>type</name>
-		<type>JetAircraft</type>
-		<value>JetAircraft</value>
 		<sim>MSFS</sim>
 		<device>joystick</device>
-	</classdefaults>
-	<classdefaults>
-		<name>type</name>
-		<type>PropellerAircraft</type>
-		<value>PropellerAircraft</value>
-		<sim>any</sim>
-		<device>any</device>
 	</classdefaults>
 	<classdefaults>
 		<name>type</name>
@@ -7770,6 +8099,34 @@
 		<sim>MSFS</sim>
 		<device>pedals</device>
 	</classdefaults>
+	<classdefaults>
+		<name>uncoordinated_turn_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>False</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>uncoordinated_turn_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>False</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>uncoordinated_turn_effect_enabled</name>
+		<type>TurbopropAircraft</type>
+		<value>False</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>uncoordinated_turn_effect_enabled</name>
+		<type>GliderAircraft</type>
+		<value>False</value>
+		<sim>MSFS</sim>
+		<device>joystick</device>
+	</classdefaults>
 <classdefaults>
 		<name>use_legacy_bindings</name>
 		<type>Helicopter</type>
@@ -7782,6 +8139,1146 @@
 		<type>HPGHelicopter</type>
 		<value>true</value>
 		<sim>MSFS</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>afterburner_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aileron_force_trim</name>
+		<type>GliderAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aileron_gain</name>
+		<type>GliderAircraft</type>
+		<value>0.1</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aileron_gain</name>
+		<type>JetAircraft</type>
+		<value>0.1</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aileron_gain</name>
+		<type>PropellerAircraft</type>
+		<value>0.1</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aileron_gain</name>
+		<type>TurbopropAircraft</type>
+		<value>0.1</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aileron_spring_gain</name>
+		<type>GliderAircraft</type>
+		<value>0.25</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aircraft_is_fbw</name>
+		<type>JetAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aircraft_is_fbw</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aircraft_is_fbw</name>
+		<type>TurbopropAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aircraft_is_spring_centered</name>
+		<type>GliderAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aircraft_is_spring_centered</name>
+		<type>TurbopropAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aircraft_is_spring_centered</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aircraft_is_spring_centered</name>
+		<type>JetAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_buffeting_enabled</name>
+		<type>GliderAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_buffeting_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_buffeting_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_buffeting_enabled</name>
+		<type>TurbopropAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_effect_enabled</name>
+		<type>GliderAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_effect_enabled</name>
+		<type>JetrAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_effect_enabled</name>
+		<type>TurbopropAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_reduction_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>aoa_reduction_max_force</name>
+		<type>JetAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>ap_following</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>ap_following</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>ap_following</name>
+		<type>TurbopropAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>ap_following</name>
+		<type>GliderAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>collective_ap_spring_gain</name>
+		<type>Helicopter</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>collective</device>
+	</classdefaults>
+	<classdefaults>
+		<name>collective_dampening_gain</name>
+		<type>Helicopter</type>
+		<value>0.4</value>
+		<sim>XPLANE</sim>
+		<device>collective</device>
+	</classdefaults>
+	<classdefaults>
+		<name>critical_aoa_max</name>
+		<type>JetAircraft</type>
+		<value>25</value>
+		<unit>deg</unit>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>critical_aoa_start</name>
+		<type>JetAircraft</type>
+		<value>22</value>
+		<unit>deg</unit>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>cyclic_spring_gain</name>
+		<type>Helicopter</type>
+		<value>0.6</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_droop_moment</name>
+		<type>GliderAircraft</type>
+		<value>0.1</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_droop_moment</name>
+		<type>JetAircraft</type>
+		<value>0.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_droop_moment</name>
+		<type>PropellerAircraft</type>
+		<value>0.3</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_droop_moment</name>
+		<type>TurbopropAircraft</type>
+		<value>0.1</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_force_trim</name>
+		<type>GliderAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_gain</name>
+		<type>GliderAircraft</type>
+		<value>0.15</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_gain</name>
+		<type>JetAircraft</type>
+		<value>0.2</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_gain</name>
+		<type>PropellerAircraft</type>
+		<value>0.15</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_gain</name>
+		<type>TurbopropAircraft</type>
+		<value>0.2</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_prop_flow_ratio</name>
+		<type>PropellerAircraft</type>
+		<value>0.2</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_prop_flow_ratio</name>
+		<type>TurbopropAircraft</type>
+		<value>0.2</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_spring_gain</name>
+		<type>GliderAircraft</type>
+		<value>0.25</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>elevator_spring_gain</name>
+		<type>TurbopropAircraft</type>
+		<value>0.5</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>engine_jet_rumble_enabled</name>
+		<type>Helicopter</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>engine_jet_rumble_enabled</name>
+		<type>TurbopropAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>engine_rotor_rumble_enabled</name>
+		<type>Helicopter</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>etl_effect_enable</name>
+		<type>Helicopter</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>etl_effect_intensity</name>
+		<type>Helicopter</type>
+		<value>0.25</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>etl_start_speed</name>
+		<type>Helicopter</type>
+		<value>8</value>
+		<unit>m/s</unit>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>etl_stop_speed</name>
+		<type>Helicopter</type>
+		<value>16</value>
+		<unit>m/s</unit>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>force_trim_button</name>
+		<type>GliderAircraft</type>
+		<value>0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>force_trim_button</name>
+		<type>Helicopter</type>
+		<value>0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>force_trim_button</name>
+		<type>Helicopter</type>
+		<value>0</value>
+		<sim>XPLANE</sim>
+		<device>collective</device>
+	</classdefaults>
+	<classdefaults>
+		<name>force_trim_enabled</name>
+		<type>Helicopter</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>force_trim_enabled</name>
+		<type>GliderAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>force_trim_reset_button</name>
+		<type>GliderAircraft</type>
+		<value>0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>force_trim_reset_button</name>
+		<type>Helicopter</type>
+		<value>0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>force_trim_reset_button</name>
+		<type>Helicopter</type>
+		<value>0</value>
+		<sim>XPLANE</sim>
+		<device>collective</device>
+	</classdefaults>
+	<classdefaults>
+		<name>gear_motion_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>invert_ap_x_axis</name>
+		<type>JetAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>invert_ap_x_axis</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>invert_ap_x_axis</name>
+		<type>TurbopropAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>jet_engine_rumble_intensity</name>
+		<type>Helicopter</type>
+		<value>0.01</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>jet_engine_rumble_intensity</name>
+		<type>JetAircraft</type>
+		<value>0.05</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>jet_engine_rumble_intensity</name>
+		<type>TurbopropAircraft</type>
+		<value>0.03</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_physical_x</name>
+		<type>GliderAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_physical_x</name>
+		<type>Helicopter</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_physical_x</name>
+		<type>JetAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_physical_x</name>
+		<type>PropellerAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_physical_x</name>
+		<type>TurbopropAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_physical_y</name>
+		<type>GliderAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_physical_y</name>
+		<type>Helicopter</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_physical_y</name>
+		<type>JetAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_physical_y</name>
+		<type>PropellerAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_physical_y</name>
+		<type>TurbopropAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_virtual_x</name>
+		<type>GliderAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_virtual_x</name>
+		<type>Helicopter</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_virtual_x</name>
+		<type>JetAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_virtual_x</name>
+		<type>PropellerAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_virtual_x</name>
+		<type>TurbopropAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_virtual_y</name>
+		<type>GliderAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_virtual_y</name>
+		<type>Helicopter</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_virtual_y</name>
+		<type>JetAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_virtual_y</name>
+		<type>PropellerAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>joystick_trim_follow_gain_virtual_y</name>
+		<type>TurbopropAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_aileron_coeff</name>
+		<type>TurbopropAircraft</type>
+		<value>0.7</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_aileron_coeff</name>
+		<type>JetAircraft</type>
+		<value>0.7</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_aileron_coeff</name>
+		<type>PropellerAircraft</type>
+		<value>0.5</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_aileron_coeff</name>
+		<type>GliderAircraft</type>
+		<value>0.4</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_elevator_coeff</name>
+		<type>TurbopropAircraft</type>
+		<value>0.5</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_elevator_coeff</name>
+		<type>JetAircraft</type>
+		<value>0.5</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_elevator_coeff</name>
+		<type>PropellerAircraft</type>
+		<value>0.6</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_elevator_coeff</name>
+		<type>GliderAircraft</type>
+		<value>0.3</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_rudder_coeff</name>
+		<type>TurbopropAircraft</type>
+		<value>0.7</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_rudder_coeff</name>
+		<type>JetAircraft</type>
+		<value>0.8</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_rudder_coeff</name>
+		<type>PropellerAircraft</type>
+		<value>0.6</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>max_rudder_coeff</name>
+		<type>GliderAircraft</type>
+		<value>0.5</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>overspeed_shake_intensity</name>
+		<type>Helicopter</type>
+		<value>0.2</value>
+		<sim>XPLANE</sim>
+		<device>collective</device>
+	</classdefaults>
+	<classdefaults>
+		<name>overspeed_shake_intensity</name>
+		<type>Helicopter</type>
+		<value>0.2</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>overspeed_shake_intensity</name>
+		<type>Helicopter</type>
+		<value>0.2</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>overspeed_shake_start</name>
+		<type>Helicopter</type>
+		<value>80</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_dampening_gain</name>
+		<type>Helicopter</type>
+		<value>0.1</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_dampening_gain</name>
+		<type>JetAircraft</type>
+		<value>0.5</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_dampening_gain</name>
+		<type>PropellerAircraft</type>
+		<value>0.6</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_spring_gain</name>
+		<type>Helicopter</type>
+		<value>0.0</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_spring_gain</name>
+		<type>JetAircraft</type>
+		<value>0.6</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>pedal_spring_gain</name>
+		<type>PropellerAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>prop_diameter</name>
+		<type>PropellerAircraft</type>
+		<value>1.7</value>
+		<unit>m</unit>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>prop_diameter</name>
+		<type>TurbopropAircraft</type>
+		<value>2.7</value>
+		<unit>m</unit>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rotor_blade_count</name>
+		<type>Helicopter</type>
+		<value>2</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_gain</name>
+		<type>GliderAircraft</type>
+		<value>.1</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_gain</name>
+		<type>JetAircraft</type>
+		<value>.12</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_gain</name>
+		<type>PropellerAircraft</type>
+		<value>.1</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_gain</name>
+		<type>TurbopropAircraft</type>
+		<value>.12</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_prop_flow_ratio</name>
+		<type>PropellerAircraft</type>
+		<value>0.2</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_prop_flow_ratio</name>
+		<type>TurbopropAircraft</type>
+		<value>0.2</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_spring_gain</name>
+		<type>GliderAircraft</type>
+		<value>0.25</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_spring_gain</name>
+		<type>TurbopropAircraft</type>
+		<value>0.4</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_trim_follow_gain_physical_x</name>
+		<type>GliderAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_trim_follow_gain_physical_x</name>
+		<type>JetAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_trim_follow_gain_physical_x</name>
+		<type>PropellerAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_trim_follow_gain_physical_x</name>
+		<type>TurbopropAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_trim_follow_gain_virtual_x</name>
+		<type>GliderAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_trim_follow_gain_virtual_x</name>
+		<type>JetAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_trim_follow_gain_virtual_x</name>
+		<type>PropellerAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>rudder_trim_follow_gain_virtual_x</name>
+		<type>TurbopropAircraft</type>
+		<value>1.0</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>speedbrake_buffet_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>speedbrake_buffet_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>speedbrake_motion_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>speedbrake_motion_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>spoiler_buffet_effect_enabled</name>
+		<type>GliderAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>spoiler_buffet_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>spoiler_buffet_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>spoiler_buffet_effect_enabled</name>
+		<type>TurbopropAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>spoiler_motion_effect_enabled</name>
+		<type>GliderAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>spoiler_motion_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>spoiler_motion_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>spoiler_motion_effect_enabled</name>
+		<type>TurbopropAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>GliderAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>GliderAircraft</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>Helicopter</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>Helicopter</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>JetAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>PropellerAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>TurbopropAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>trim_following</name>
+		<type>TurbopropAircraft</type>
+		<value>true</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>type</name>
+		<type>GliderAircraft</type>
+		<value>GliderAircraft</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>type</name>
+		<type>GliderAircraft</type>
+		<value>GliderAircraft</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>type</name>
+		<type>Helicopter</type>
+		<value>Helicopter</value>
+		<sim>XPLANE</sim>
+		<device>any</device>
+	</classdefaults>
+	<classdefaults>
+		<name>type</name>
+		<type>JetAircraft</type>
+		<value>JetAircraft</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>type</name>
+		<type>TurbopropAircraft</type>
+		<value>TurbopropAircraft</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>type</name>
+		<type>TurbopropAircraft</type>
+		<value>TurbopropAircraft</value>
+		<sim>XPLANE</sim>
+		<device>pedals</device>
+	</classdefaults>
+	<classdefaults>
+		<name>uncoordinated_turn_effect_enabled</name>
+		<type>PropellerAircraft</type>
+		<value>False</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>uncoordinated_turn_effect_enabled</name>
+		<type>JetAircraft</type>
+		<value>False</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>uncoordinated_turn_effect_enabled</name>
+		<type>TurbopropAircraft</type>
+		<value>False</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+	</classdefaults>
+	<classdefaults>
+		<name>uncoordinated_turn_effect_enabled</name>
+		<type>GliderAircraft</type>
+		<value>False</value>
+		<sim>XPLANE</sim>
+		<device>joystick</device>
+</classdefaults>
+	<classdefaults>
+		<name>use_legacy_bindings</name>
+		<type>Helicopter</type>
+		<value>false</value>
+		<sim>XPLANE</sim>
 		<device>any</device>
 	</classdefaults>
 	<models>

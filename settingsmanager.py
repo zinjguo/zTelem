@@ -3,19 +3,19 @@ import re
 import sys
 import os
 import shutil
-from PySide6 import QtGui, QtWidgets, QtCore
-from PySide6.QtWidgets import (QApplication,  QTableWidgetItem, QCheckBox, QLineEdit, QDialog, QLabel, QComboBox,
+from PyQt5 import QtGui, QtWidgets, QtCore
+from PyQt5.QtWidgets import (QApplication,  QTableWidgetItem, QCheckBox, QLineEdit, QDialog, QLabel, QComboBox,
                              QVBoxLayout, QPushButton, QFileDialog, QMessageBox, QHeaderView)
-from PySide6.QtWidgets import QTableWidget, QTextEdit, QWidget, QSlider
+from PyQt5.QtWidgets import QTableWidget, QTextEdit, QWidget, QSlider
 from datetime import datetime
-from PySide6.QtCore import Qt, Signal
+from PyQt5.QtCore import Qt, pyqtSignal
 from settingswindow import Ui_SettingsWindow
 
 
 import xmlutils
 
-print_debugs = False
-print_method_calls = False
+print_debugs = True
+print_method_calls = True
 
 
 def lprint(msg):
@@ -152,7 +152,7 @@ class SettingsWindow(QtWidgets.QMainWindow, Ui_SettingsWindow):
         mprint(f"init_ui")
 
         # xmlutils.create_empty_userxml_file()  # Now handled by TelemFFB on startup
-        self.table_widget.horizontalHeader().setStretchLastSection(True)
+        self.table_widget.horizontalHeader().setStretchLastSection(True) 
         self.table_widget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tb_currentmodel.setText(self.model_name)
 
@@ -273,7 +273,7 @@ class SettingsWindow(QtWidgets.QMainWindow, Ui_SettingsWindow):
     def setup_sim_list(self):
         mprint("setup_class_list")
         self.drp_sim.blockSignals(True)
-        sims = ['DCS', 'IL2', 'MSFS']
+        sims = ['DCS', 'IL2', 'MSFS', 'XPLANE']
         self.drp_sim.clear()
         self.drp_sim.addItems(sims)
         self.drp_sim.setCurrentText(self.sim)
@@ -304,6 +304,14 @@ class SettingsWindow(QtWidgets.QMainWindow, Ui_SettingsWindow):
 
             case 'MSFS':
                 for enable in {'PropellerAircraft', 'TurbopropAircraft', 'JetAircraft', 'GliderAircraft', 'Helicopter', 'HPGHelicopter'}:
+                    lprint(f"enable {enable}")
+                    self.drp_class.model().item(self.drp_class.findText(enable)).setEnabled(True)
+
+            case 'XPLANE':
+                for disable in {'HPGHelicopter'}:
+                    lprint(f"disable {disable}")
+                    self.drp_class.model().item(self.drp_class.findText(disable)).setEnabled(False)
+                for enable in {'PropellerAircraft', 'TurbopropAircraft', 'JetAircraft', 'GliderAircraft', 'Helicopter'}:
                     lprint(f"enable {enable}")
                     self.drp_class.model().item(self.drp_class.findText(enable)).setEnabled(True)
 
@@ -492,7 +500,7 @@ class SettingsWindow(QtWidgets.QMainWindow, Ui_SettingsWindow):
             self.table_widget.setItem(row, 11, sliderfactor_item)
 
 
-            #self.connected_rows.add(row)
+            #self.connected_rows.addf(row)
 
 
             # make unselectable in not checked
@@ -1033,7 +1041,7 @@ class SettingsWindow(QtWidgets.QMainWindow, Ui_SettingsWindow):
 
         if mode != oldmode:
             match mode:
-                case 'MSFS' | 'IL2' | 'DCS':
+                case 'MSFS' | 'IL2' | 'DCS' | 'XPLANE':
                     mode = 'Sim'
 
             self.l_mode.setText(mode)
@@ -1093,6 +1101,7 @@ class SettingsWindow(QtWidgets.QMainWindow, Ui_SettingsWindow):
         if self.sim == 'IL2' and craft == 'HPGHelicopter': return True
         if self.sim == 'IL2' and craft == 'Helicopter': return True
         if self.sim == 'IL2' and craft == 'TurbopropAircraft': return True
+        if self.sim == 'XPLANE' and craft == 'HPGHelicopter': return True
 
         return False
 
@@ -1170,6 +1179,8 @@ class UserModelDialog(QDialog):
                 classes = ["PropellerAircraft", "JetAircraft"]
             case 'MSFS':
                 classes = ['PropellerAircraft', 'TurbopropAircraft', 'JetAircraft', 'GliderAircraft', 'Helicopter', 'HPGHelicopter']
+            case 'XPLANE':
+                classes = ['PropellerAircraft', 'TurbopropAircraft', 'JetAircraft', 'GliderAircraft', 'Helicopter']
 
         # FOR TESTING
         # classes.append('AllSettings')
@@ -1208,7 +1219,8 @@ class UserModelDialog(QDialog):
 
         self.ok_button = QPushButton("OK")
         self.ok_button.setStyleSheet("text-align:center;")
-        self.ok_button.setEnabled(False)
+        if self.combo_box.currentText() == '':
+            self.ok_button.setEnabled(False)
         cancel_button = QPushButton("Cancel")
         cancel_button.setStyleSheet("text-align:center;")
 

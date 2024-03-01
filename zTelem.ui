@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>540</width>
-    <height>301</height>
+    <width>528</width>
+    <height>334</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,6 +18,9 @@
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="comportsgroup">
@@ -192,13 +195,26 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="simSettingsBtn">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>270</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sim Settings</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>540</width>
+     <width>528</width>
      <height>17</height>
     </rect>
    </property>

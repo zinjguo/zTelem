@@ -22,6 +22,9 @@ import select
 from time import monotonic
 import logging
 import sys
+import xmlutils
+import xml.etree.ElementTree as ET
+
 #import winpaths
 
 
@@ -238,7 +241,7 @@ def to_body_vector(yaw, pitch, roll, world_coordinates):
     return [x[0] for x in body_coordinates]
 
 
-from PySide6.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox
 
 def install_export_lua():
     saved_games = winpaths.get_path(winpaths.FOLDERID.SavedGames)
@@ -285,10 +288,10 @@ def install_export_lua():
                     f.close()
                 write_script()
 
-from PySide6 import QtCore, QtGui, Qt
+from PyQt5 import QtCore, QtGui
 
 class OutLog(QtCore.QObject):
-    textReceived = QtCore.Signal(str)
+    textReceived = QtCore.pyqtSignal(str)
 
     def __init__(self, edit, out=None, color=None):
         QtCore.QObject.__init__(self)
@@ -326,18 +329,18 @@ class OutLog(QtCore.QObject):
 
 if __name__ == "__main__":
     #test install
-    from PySide6.QtWidgets import QApplication
+    from PyQt5.QtWidgets import QApplication
     app = QApplication(sys.argv)
     install_export_lua()
 
 def create_empty_userxml_file(path):
+    print(path)
     if not os.path.isfile(path):
         # Create an empty XML file with the specified root element
         root = ET.Element("TelemFFB")
         tree = ET.ElementTree(root)
         # Create a backup directory if it doesn't exist
-        if not os.path.exists(os.path.dirname(path)):
-            os.makedirs(os.path.dirname(path))
+
         tree.write(path)
         logging.info(f"Empty XML file created at {path}")
     else:

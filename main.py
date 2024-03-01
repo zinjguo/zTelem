@@ -25,11 +25,26 @@ import traceback
 from pySerialTransfer import pySerialTransfer as txfer
 import serial.tools.list_ports
 import configparser
-from PySide6 import QtWidgets
-from PySide6.QtUiTools import QUiLoader
+from PyQt5 import uic
 from telemManager import TelemManager
 from settingsmanager import *
 import xmlutils
+import PyQt5
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout, QMessageBox, QPushButton, QDialog, \
+    QRadioButton, QListView, QScrollArea, QHBoxLayout, QPlainTextEdit, QMenu, QButtonGroup, QFrame, \
+    QDialogButtonBox, QSizePolicy, QSpacerItem, QTabWidget, QGroupBox
+from PyQt5.QtCore import QObject, pyqtSignal, Qt, QCoreApplication, QUrl, QRect, QMetaObject, QSize, QByteArray, QTimer, \
+    QThread, QMutex, QRegularExpression
+from PyQt5.QtGui import QFont, QPixmap, QIcon, QDesktopServices, QPainter, QColor, QKeyEvent, QIntValidator, QCursor, \
+    QTextCursor, QRegularExpressionValidator, QKeySequence
+from PyQt5.QtWidgets import QGridLayout, QToolButton, QStyle
+
+if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
+    PyQt5.QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+
+if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
+    PyQt5.QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
 
 
 logging.basicConfig(
@@ -42,10 +57,12 @@ logging.basicConfig(
 import re
 
 import argparse
-from PySide6 import QtWidgets
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout,QMessageBox, QScrollArea
-from PySide6.QtCore import QObject, Signal, Qt, QThread
-from PySide6.QtGui import QFont
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout,QMessageBox, QScrollArea
+from PyQt5.QtCore import QObject, pyqtSignal, Qt, QThread
+from PyQt5.QtGui import QFont
+
+#from zTelem_ui import Ui_MainWindow
 
 from time import monotonic
 import socket
@@ -174,10 +191,20 @@ manager.start()
 manager.comConnected.connect(updateComStatus)
 manager.telemetryReceived.connect(updateTelemetry)
 
-loader = QUiLoader()
-app = QtWidgets.QApplication(sys.argv)
-window = loader.load("zTelem.ui", None)
 
+#window = uic.loadUi("zTelem.ui", None)
+
+class MainWindow(QtWidgets.QMainWindow):
+    def __init__(self, *args, **kwargs):
+        super(MainWindow, self).__init__(*args, **kwargs)
+        uic.loadUi("zTelem.ui", self)
+        self.setFixedSize(550, 300)
+        self.setStatusBar(None)
+        
+app = QtWidgets.QApplication(sys.argv)
+app.setStyle('fusion')
+window = MainWindow()
+        
 getComPorts()
 load_last_selection()
 window.comSelect.activated.connect(save_last_selection)
@@ -199,14 +226,48 @@ utils.create_empty_userxml_file(userconfig_path)
 # global settings_mgr, telem_manager, config_was_default
 xmlutils.update_vars("joystick", userconfig_path, defaults_path)
 global settings_mgr
-settings_mgr = SettingsWindow(datasource="Global", device="joystick", userconfig_path=userconfig_path, defaults_path=defaults_path)
+try:
+    settings_mgr = SettingsWindow(datasource="Global", device="joystick", userconfig_path=userconfig_path, defaults_path=defaults_path)
+except Exception as e:
+    logging.error(f"Error Reading user config file..")
+    ans = QMessageBox.question(None, "User Config Error", "There was an error reading the userconfig.  The file is likely corrupted.\n\nDo you want to back-up the existing config and create a new default (empty) config?\n\nIf you chose No, TelemFFB will exit.")
+    if ans == QMessageBox.Yes:
+        # Get the current timestamp
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M')
 
+        # Create the backup file name with the timestamp
+        backup_file = os.path.join(('userconfig_' + os.environ['USERNAME'] + "_" + timestamp + '_corrupted.bak'))
 
-settings_mgr.currentmodel_click()
-settings_mgr.update_table_on_sim_change()
+        # Copy the file to the backup file
+        shutil.copy(userconfig_path, backup_file)
 
+        logging.debug(f"Backup created: {backup_file}")
 
-settings_mgr.show();
+        os.remove(userconfig_path)
+        utils.create_empty_userxml_file(userconfig_path)
+
+        logging.info(f"User config Reset:  Backup file created: {backup_file}")
+        settings_mgr = SettingsWindow(datasource="Global", device="joystick", userconfig_path=userconfig_path, defaults_path=defaults_path)
+        QMessageBox.information(None, "New Userconfig created", f"A backup has been created: {backup_file}\n")
+    else:
+        QCoreApplication.instance().quit()
+        
+        
+def toggleSimSettings():
+    global settings_mgr
+    if settings_mgr.isVisible():
+        settings_mgr.hide()
+    else: 
+        settings_mgr.show()
+        
+    if settings_mgr.current_aircraft_name != '':
+                    settings_mgr.currentmodel_click()
+    else:
+        settings_mgr.update_table_on_class_change()
+
+    if settings_mgr.current_sim == '' or settings_mgr.current_sim == 'nothing':
+        settings_mgr.update_table_on_sim_change()
+
+window.simSettingsBtn.clicked.connect(toggleSimSettings)
 
 app.exec()
-
