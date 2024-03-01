@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>528</width>
-    <height>334</height>
+    <width>455</width>
+    <height>349</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -26,10 +26,10 @@
    <widget class="QGroupBox" name="comportsgroup">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>320</x>
       <y>10</y>
       <width>121</width>
-      <height>251</height>
+      <height>281</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -53,7 +53,7 @@
        <x>10</x>
        <y>20</y>
        <width>101</width>
-       <height>151</height>
+       <height>171</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -62,6 +62,9 @@
       </property>
       <item>
        <widget class="QComboBox" name="comSelect"/>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comSelectWind"/>
       </item>
       <item>
        <widget class="QPushButton" name="refreshComBtn">
@@ -119,7 +122,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>180</y>
+       <y>200</y>
        <width>101</width>
        <height>71</height>
       </rect>
@@ -171,7 +174,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>391</width>
+      <width>301</width>
       <height>261</height>
      </rect>
     </property>
@@ -183,7 +186,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>341</width>
+       <width>281</width>
        <height>221</height>
       </rect>
      </property>
@@ -198,8 +201,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <widget class="QPushButton" name="simSettingsBtn">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>270</y>
+      <x>10</x>
+      <y>280</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -214,7 +217,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>528</width>
+     <width>455</width>
      <height>17</height>
     </rect>
    </property>

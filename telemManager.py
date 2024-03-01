@@ -32,10 +32,12 @@ class TelemManager(QObject, threading.Thread):
     numFrames : int = 0
 
     serialEnabled = False
+    windEnabled = False
 
     lastGun = 0;
 
     ser = SerialHandler()
+    serWind = SerialHandler()
 
 
     def __init__(self) -> None:
@@ -45,17 +47,25 @@ class TelemManager(QObject, threading.Thread):
         self.daemon = True
 
 
-    def connectCom(self, port):
+    def connectCom(self, port, windPort=0):
         self.serialEnabled = self.ser.connect(port)
-        if self.serialEnabled:
+        
+        if windPort != 0:
+            self.windEnabled = self.serWind.connect(windPort)
+            
+            
+        if self.serialEnabled or (windPort != 0 and self.windEnabled):
             self.comConnected.emit("connected")
         else:
             self.comConnected.emit("error")
+                   
         return self.serialEnabled
 
     def disconnectCom(self):
         self.ser.disconnect()
+        self.serWind.disconnect()
         self.serialEnabled = False
+        self.windEnabled = False
         self.comConnected.emit("disconnected")
         return self.serialEnabled
 
@@ -103,24 +113,31 @@ class TelemManager(QObject, threading.Thread):
             try:
                 items["MechInfo"] = json.loads(items["MechInfo"])
             except: pass
+            
+            curFrameTime = time.monotonic() * 1000
+            if (curFrameTime - self.lastFrameTime > 1000/72):
+                if (self.windEnabled):
+                    if ("TAS" in items):
+                        
+                        mapped_value = self.map_range(items["TAS"], 50, 180, 10, 256)
+                        #print(f"Sending Wind: {mapped_value}")
+                        _rec_list = self.serWind.sendTelem([float(mapped_value), float(0), float(0)])
+                        if _rec_list:
+                            items['windSerialOutput'] = _rec_list
 
 
-            if (self.serialEnabled) and ("TAS" in items) and ("ACCs" in items) and (items['N'] == "P-51D" or items['N'] == "P-51D-30-NA" or items['N'] == "FW-190D9"):
-                minSpeed = 50
-                maxSpeed = 200
+                if (self.serialEnabled) and ("TAS" in items) and ("ACCs" in items) and (items['N'] == "P-51D" or items['N'] == "P-51D-30-NA" or items['N'] == "FW-190D9"):
+                    minSpeed = 10
+                    maxSpeed = 200
 
-                gainX = 1
-                gainY = 1
+                    gainX = 1
+                    gainY = 1
 
-                #gainX = self.map_range(items['TAS'], minSpeed, maxSpeed, .35, 2.5)
-                gainX = .25
-                gainY = self.map_range(items['TAS'], minSpeed, maxSpeed, .25, 1.75)
+                    #gainX = self.map_range(items['TAS'], minSpeed, maxSpeed, .35, 2.5)
+                    gainX = .25
+                    gainY = self.map_range(items['TAS'], minSpeed, maxSpeed, .25, 1.75)
 
-
-
-
-                curFrameTime = time.monotonic() * 1000
-                if (curFrameTime - self.lastFrameTime > 1000/72):
+                
                     if self.lastGun != items['Gun']:
                         vibration = 5
                         self.lastGun = items['Gun']
@@ -133,10 +150,10 @@ class TelemManager(QObject, threading.Thread):
 
 
                     _rec_list = self.ser.sendTelem([float(gainX), float(gainY), float(vibration)])
-                    if _rec_list:
+                    # if _rec_list:
 
-                        _rec_list = list(np.around(np.array(_rec_list), 2))
-                        items['serialOutput'] = _rec_list
+                    #     _rec_list = list(np.around(np.array(_rec_list), 2))
+                    #     items['serialOutput'] = _rec_list
 
                     #print(_rec_list)
                     self.lastFrameTime = curFrameTime

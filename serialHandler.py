@@ -61,7 +61,7 @@ class SerialHandler:
         #             print('ERROR: STOP_BYTE_ERROR')
         #         else:
         #             print('ERROR: {}'.format(self.link.status))
-        # # rec_values = self.link.rx_obj(obj_type=type(packet), start_pos=0,
+        # rec_values = self.link.rx_obj(obj_type=type(packet), start_pos=0,
         #     obj_byte_size=dataSize,
         #     list_format='f')
         # return(rec_values)

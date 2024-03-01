@@ -108,30 +108,40 @@ def format_dict(data, prefix=""):
 
 def getComPorts():
     window.comSelect.clear()
+    window.comSelectWind.clear()
     ports = serial.tools.list_ports.comports()
     com_ports = []
     for port, _, _ in ports:
         com_ports.append(port)
     if com_ports:
         window.comSelect.addItems(com_ports)
+        window.comSelectWind.addItems(com_ports)
 
 def load_last_selection():
     config = configparser.ConfigParser()
     config.read(config_file)
 
-    if 'LastSelection' in config:
-        last_selection = config['LastSelection'].get('COMPort', '')
+    if 'LastSelectionCom' in config:
+        last_selection = config['LastSelectionCom'].get('COMPort', '')
         if last_selection:
             index = window.comSelect.findText(last_selection)
             if index != -1:
                 window.comSelect.setCurrentIndex(index)
+    if 'LastSelectionWind' in config:
+        last_selection = config['LastSelectionWind'].get('COMPort', '')
+        if last_selection:
+            index = window.comSelectWind.findText(last_selection)
+            if index != -1:
+                window.comSelectWind.setCurrentIndex(index)
+                
     if 'autoConnect' in config:
         autoConnect = config['autoConnect'].getboolean('autoConnect', False)
         window.autoConnect.setChecked(autoConnect)
 
 def save_last_selection():
     config = configparser.ConfigParser()
-    config['LastSelection'] = {'COMPort': window.comSelect.currentText()}
+    config['LastSelectionCom'] = {'COMPort': window.comSelect.currentText()}
+    config['LastSelectionWind'] = {'COMPort': window.comSelectWind.currentText()}
     config['autoConnect'] = {'autoConnect': window.autoConnect.isChecked()}
 
     with open(config_file, 'w') as configfile:
@@ -144,6 +154,7 @@ def updateComStatus(status):
         window.disconnectBtn.setEnabled(True)
         window.autoConnect.setEnabled(False)
         window.comSelect.setEnabled(False)
+        window.comSelectWind.setEnabled(False)
     elif status == 'error':
         window.status.setText("Error connecting to port")
         window.connectBtn.setEnabled(True)
@@ -155,6 +166,7 @@ def updateComStatus(status):
         window.connectBtn.setEnabled(True)
         window.autoConnect.setEnabled(True)
         window.comSelect.setEnabled(True)
+        window.comSelectWind.setEnabled(True)
         window.disconnectBtn.setEnabled(False)
 
 def updateTelemetry(data : dict):
@@ -198,7 +210,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         uic.loadUi("zTelem.ui", self)
-        self.setFixedSize(550, 300)
+        self.setFixedSize(450, 320)
         self.setStatusBar(None)
         
 app = QtWidgets.QApplication(sys.argv)
@@ -208,8 +220,9 @@ window = MainWindow()
 getComPorts()
 load_last_selection()
 window.comSelect.activated.connect(save_last_selection)
+window.comSelectWind.activated.connect(save_last_selection)
 window.autoConnect.clicked.connect(save_last_selection)
-window.connectBtn.clicked.connect(lambda: manager.connectCom(window.comSelect.currentText()))
+window.connectBtn.clicked.connect(lambda: manager.connectCom(window.comSelect.currentText(), window.comSelectWind.currentText()))
 window.disconnectBtn.clicked.connect(lambda: manager.disconnectCom())
 window.disconnectBtn.setEnabled(False)
 window.refreshComBtn.clicked.connect(getComPorts)
