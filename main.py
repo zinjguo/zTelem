@@ -40,11 +40,13 @@ from PyQt5.QtGui import QFont, QPixmap, QIcon, QDesktopServices, QPainter, QColo
     QTextCursor, QRegularExpressionValidator, QKeySequence
 from PyQt5.QtWidgets import QGridLayout, QToolButton, QStyle
 
+
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     PyQt5.QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 
 if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
     PyQt5.QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+
 
 
 logging.basicConfig(
@@ -210,7 +212,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         uic.loadUi("zTelem.ui", self)
-        self.setFixedSize(450, 320)
+        self.setFixedSize(510, 380)
         self.setStatusBar(None)
         
 app = QtWidgets.QApplication(sys.argv)
