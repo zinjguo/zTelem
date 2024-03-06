@@ -273,7 +273,7 @@ class SettingsWindow(QtWidgets.QMainWindow, Ui_SettingsWindow):
     def setup_sim_list(self):
         mprint("setup_class_list")
         self.drp_sim.blockSignals(True)
-        sims = ['DCS', 'IL2', 'MSFS', 'XPLANE']
+        sims = ['DCS', 'IL2', 'MSFS']
         self.drp_sim.clear()
         self.drp_sim.addItems(sims)
         self.drp_sim.setCurrentText(self.sim)

@@ -1,3 +1,4 @@
+from ctypes import sizeof
 import time
 from pySerialTransfer import pySerialTransfer as txfer
 
@@ -10,9 +11,9 @@ class SerialHandler:
     telemCallBack = None
     
     packet = [
-        1.0, # gainX
-        1.0, # gainY
-        1.0, #vibration
+        1, # gainX
+        1, # gainY
+        1, #vibration
     ]
         
     def connect(self, port):
@@ -44,8 +45,11 @@ class SerialHandler:
         if self.link.open() == False:
             return False
         size = self.link.tx_obj("t")
-        dataSize = self.link.tx_obj(packet, size) - size 
-        self.link.send(size + dataSize)
+        for index, val in enumerate(packet):
+            self.link.tx_obj(val, index+1, val_type_override='B')
+
+        #dataSize = self.link.tx_obj(packet, size, val_type_override='c') - size 
+        self.link.send(size + len(packet))
         
         curMillis = time.monotonic()
         # while not self.link.available():

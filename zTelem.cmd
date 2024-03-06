@@ -1,1 +1,1 @@
-python zTelem.py
+python main.py

@@ -119,14 +119,14 @@ class TelemManager(QObject, threading.Thread):
                 if (self.windEnabled):
                     if ("TAS" in items):
                         
-                        mapped_value = self.map_range(items["TAS"], 50, 180, 10, 256)
+                        mapped_value = self.map_range(items["TAS"], 50, 180, 10, 255)
                         #print(f"Sending Wind: {mapped_value}")
-                        _rec_list = self.serWind.sendTelem([float(mapped_value), float(0), float(0)])
+                        _rec_list = self.serWind.sendTelem([int(mapped_value), int(0), int(0)])
                         if _rec_list:
                             items['windSerialOutput'] = _rec_list
 
 
-                if (self.serialEnabled) and ("TAS" in items) and ("ACCs" in items) and (items['N'] == "P-51D" or items['N'] == "P-51D-30-NA" or items['N'] == "FW-190D9"):
+                if (self.serialEnabled) and ("TAS" in items) and ("ACCs" in items) and (items['N'] == "P-51D" or items['N'] == "P-51D-30-NA" or items['N'] == "FW-190D9" or items['N'] == "F-16C"):
                     minSpeed = 10
                     maxSpeed = 200
 
@@ -134,8 +134,8 @@ class TelemManager(QObject, threading.Thread):
                     gainY = 1
 
                     #gainX = self.map_range(items['TAS'], minSpeed, maxSpeed, .35, 2.5)
-                    gainX = .25
-                    gainY = self.map_range(items['TAS'], minSpeed, maxSpeed, .25, 1.75)
+                    gainX = 10
+                    gainY = int(self.map_range(items['TAS'], minSpeed, maxSpeed, 0, 255))
 
                 
                     if self.lastGun != items['Gun']:
@@ -146,10 +146,10 @@ class TelemManager(QObject, threading.Thread):
                         vibration = 0
 
                     if items['AoA'] > 9 and items['altAgl'] > 10:
-                        vibration = self.map_range(items['AoA'], 9, 13, 1, 5)
+                        vibration = self.map_range(items['AoA'], 9, 13, 0, 255)
 
 
-                    _rec_list = self.ser.sendTelem([float(gainX), float(gainY), float(vibration)])
+                    _rec_list = self.ser.sendTelem([int(gainX), int(gainY), int(vibration)])
                     # if _rec_list:
 
                     #     _rec_list = list(np.around(np.array(_rec_list), 2))
