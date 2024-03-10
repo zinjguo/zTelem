@@ -3,8 +3,9 @@ import time
 from pySerialTransfer import pySerialTransfer as txfer
 
 class SerialHandler:
-    def __init__(self):
+    def __init__(self, type):
         self.link = False
+        self._type = type
         
     connectCallBack = None
 
@@ -49,7 +50,11 @@ class SerialHandler:
             self.link.tx_obj(val, index+1, val_type_override='B')
 
         #dataSize = self.link.tx_obj(packet, size, val_type_override='c') - size 
+        #if self._type == "fsb":
+            #print(self.link.txBuff, size+len(packet));
+            
         self.link.send(size + len(packet))
+        
         
         curMillis = time.monotonic()
         # while not self.link.available():

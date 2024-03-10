@@ -105,9 +105,6 @@ def format_dict(data, prefix=""):
 # #serialManager.serialReceived.connect(window.update_serial);
 
 
-
-
-
 def getComPorts():
     window.comSelect.clear()
     window.comSelectWind.clear()
@@ -229,6 +226,20 @@ window.disconnectBtn.clicked.connect(lambda: manager.disconnectCom())
 window.disconnectBtn.setEnabled(False)
 window.refreshComBtn.clicked.connect(getComPorts)
 
+testSend = False
+
+def toggleTestSend():
+    global testSend
+    testSend = not testSend
+    
+    if testSend == True:
+        window.testSend.setText("Stop Test")
+        manager.startTestThread()
+    else:
+        window.testSend.setText("Start Test")
+        manager.stopTestThread()
+
+window.testSend.clicked.connect(toggleTestSend)
 
 
 window.setWindowTitle("zTelem")

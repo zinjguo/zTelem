@@ -1,3 +1,4 @@
+from cgi import test
 import serial
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout,QMessageBox, QScrollArea
@@ -21,6 +22,27 @@ HPFs: Dict[str, utils.HighPassFilter] = utils.Dispenser(utils.HighPassFilter)
 # Lowpass filter dispenser
 LPFs: Dict[str, utils.LowPassFilter] = utils.Dispenser(utils.LowPassFilter)
 
+class TestThread(threading.Thread):
+    _parent = None
+    
+    sendCount = 0
+    def __init__(self, parent=None):
+        super(TestThread, self).__init__()
+        self.daemon = True
+        self._parent = parent
+        self._run = True
+        
+    def run(self):
+        while self._run == True:
+            self.sendCount += 1
+            print("current count: ", self.sendCount)
+            self._parent.ser.sendTelem([int(126), int(127), int(127)])
+            self._parent.serWind.sendTelem([int(100), int(255), int(1)])
+            time.sleep(.013888)
+            
+    def stop(self):
+        self._run = False
+
 
 class TelemManager(QObject, threading.Thread):
     telemetryReceived = pyqtSignal(object)
@@ -34,16 +56,23 @@ class TelemManager(QObject, threading.Thread):
     serialEnabled = False
     windEnabled = False
 
-    lastGun = 0;
+    lastGun = 0
 
-    ser = SerialHandler()
-    serWind = SerialHandler()
-
+    ser = SerialHandler("fsb")
+    serWind = SerialHandler("wind")
+    
+    def startTestThread(self):
+        self.testThread = TestThread(self)
+        self.testThread.start()
+    
+    def stopTestThread(self):
+        self.testThread.stop()
+        #self.testThread = None
 
     def __init__(self) -> None:
         QObject.__init__(self)
         threading.Thread.__init__(self)
-
+        self.testThread = TestThread(self)
         self.daemon = True
 
 
@@ -58,8 +87,12 @@ class TelemManager(QObject, threading.Thread):
             self.comConnected.emit("connected")
         else:
             self.comConnected.emit("error")
-                   
+            
         return self.serialEnabled
+    
+    def testSendTelem(self):
+        self.ser.sendTelem([int(5), int(127), int(255)])
+        self.serWind.sendTelem([int(17), int(1), int(1)])
 
     def disconnectCom(self):
         self.ser.disconnect()
@@ -139,14 +172,14 @@ class TelemManager(QObject, threading.Thread):
 
                 
                     if self.lastGun != items['Gun']:
-                        vibration = 5
+                        vibration = 255
                         self.lastGun = items['Gun']
                     else :
                         gunFire = False
                         vibration = 0
 
                     if items['AoA'] > 9 and items['altAgl'] > 10:
-                        vibration = self.map_range(items['AoA'], 9, 13, 0, 255)
+                        vibration = int(self.map_range(items['AoA'], 9, 13, 60, 255))
 
 
                     _rec_list = self.ser.sendTelem([int(gainX), int(gainY), int(vibration)])
