@@ -149,17 +149,9 @@ class TelemManager(QObject, threading.Thread):
             
             curFrameTime = time.monotonic() * 1000
             if (curFrameTime - self.lastFrameTime > 1000/72):
-                if (self.windEnabled):
-                    if ("TAS" in items):
-                        
-                        mapped_value = self.map_range(items["TAS"], 50, 180, 10, 255)
-                        #print(f"Sending Wind: {mapped_value}")
-                        _rec_list = self.serWind.sendTelem([int(mapped_value), int(0), int(0)])
-                        if _rec_list:
-                            items['windSerialOutput'] = _rec_list
+                
 
-
-                if (self.serialEnabled) and ("TAS" in items) and ("ACCs" in items) and (items['N'] == "P-51D" or items['N'] == "P-51D-30-NA" or items['N'] == "FW-190D9" or items['N'] == "F-16C"):
+                if (self.serialEnabled) and ("TAS" in items) and ("ACCs" in items) and (items['N'] == "P-51D" or items['N'] == "P-51D-30-NA" or items['N'] == "FW-190D9"):
                     minSpeed = 10
                     maxSpeed = 200
 
@@ -189,6 +181,16 @@ class TelemManager(QObject, threading.Thread):
                     #     items['serialOutput'] = _rec_list
 
                     #print(_rec_list)
+                    
+                    if (self.windEnabled):
+                        if ("TAS" in items):
+                            
+                            mapped_value = self.map_range(items["TAS"], 50, 180, 10, 255)
+                            #print(f"Sending Wind: {mapped_value}")
+                            _rec_list = self.serWind.sendTelem([int(mapped_value), int(0), int(0)])
+                            if _rec_list:
+                                items['windSerialOutput'] = _rec_list
+
                     self.lastFrameTime = curFrameTime
 
 
