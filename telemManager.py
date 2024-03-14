@@ -36,7 +36,7 @@ class TestThread(threading.Thread):
         while self._run == True:
             self.sendCount += 1
             print("current count: ", self.sendCount)
-            self._parent.ser.sendTelem([int(126), int(127), int(127)])
+            self._parent.ser.sendTelem([int(126), int(255), int(255), ord('s')])
             self._parent.serWind.sendTelem([int(100), int(255), int(1)])
             time.sleep(.013888)
             
@@ -169,12 +169,16 @@ class TelemManager(QObject, threading.Thread):
                     else :
                         gunFire = False
                         vibration = 0
+                        
+                    vibratonType = 'c'
 
                     if items['AoA'] > 9 and items['altAgl'] > 10:
                         vibration = int(self.map_range(items['AoA'], 9, 13, 60, 255))
+                    
+                    vibrationType='t'
 
 
-                    _rec_list = self.ser.sendTelem([int(gainX), int(gainY), int(vibration)])
+                    _rec_list = self.ser.sendTelem([int(gainX), int(gainY), int(vibration), chr(vibrationType)])
                     # if _rec_list:
 
                     #     _rec_list = list(np.around(np.array(_rec_list), 2))

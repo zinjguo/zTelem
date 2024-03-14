@@ -4,3 +4,4 @@ __pycache__
 *.bak
 *.backup
 userconfig.xml
+*.sqlite3

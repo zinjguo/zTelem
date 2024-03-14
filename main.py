@@ -28,7 +28,6 @@ import configparser
 from PyQt5 import uic
 from telemManager import TelemManager
 from settingsmanager import *
-import xmlutils
 import PyQt5
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout, QMessageBox, QPushButton, QDialog, \
@@ -39,7 +38,7 @@ from PyQt5.QtCore import QObject, pyqtSignal, Qt, QCoreApplication, QUrl, QRect,
 from PyQt5.QtGui import QFont, QPixmap, QIcon, QDesktopServices, QPainter, QColor, QKeyEvent, QIntValidator, QCursor, \
     QTextCursor, QRegularExpressionValidator, QKeySequence
 from PyQt5.QtWidgets import QGridLayout, QToolButton, QStyle
-
+from db import Plane, DbHandler
 
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     PyQt5.QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
@@ -245,38 +244,6 @@ window.testSend.clicked.connect(toggleTestSend)
 window.setWindowTitle("zTelem")
 window.show()
 
-defaults_path = utils.get_resource_path('defaults.xml', prefer_root=True)
-userconfig_path = 'userconfig.xml'
-utils.create_empty_userxml_file(userconfig_path)
-
-# global settings_mgr, telem_manager, config_was_default
-xmlutils.update_vars("joystick", userconfig_path, defaults_path)
-global settings_mgr
-try:
-    settings_mgr = SettingsWindow(datasource="Global", device="joystick", userconfig_path=userconfig_path, defaults_path=defaults_path)
-except Exception as e:
-    logging.error(f"Error Reading user config file..")
-    ans = QMessageBox.question(None, "User Config Error", "There was an error reading the userconfig.  The file is likely corrupted.\n\nDo you want to back-up the existing config and create a new default (empty) config?\n\nIf you chose No, TelemFFB will exit.")
-    if ans == QMessageBox.Yes:
-        # Get the current timestamp
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M')
-
-        # Create the backup file name with the timestamp
-        backup_file = os.path.join(('userconfig_' + os.environ['USERNAME'] + "_" + timestamp + '_corrupted.bak'))
-
-        # Copy the file to the backup file
-        shutil.copy(userconfig_path, backup_file)
-
-        logging.debug(f"Backup created: {backup_file}")
-
-        os.remove(userconfig_path)
-        utils.create_empty_userxml_file(userconfig_path)
-
-        logging.info(f"User config Reset:  Backup file created: {backup_file}")
-        settings_mgr = SettingsWindow(datasource="Global", device="joystick", userconfig_path=userconfig_path, defaults_path=defaults_path)
-        QMessageBox.information(None, "New Userconfig created", f"A backup has been created: {backup_file}\n")
-    else:
-        QCoreApplication.instance().quit()
         
         
 def toggleSimSettings():
@@ -294,6 +261,8 @@ def toggleSimSettings():
     if settings_mgr.current_sim == '' or settings_mgr.current_sim == 'nothing':
         settings_mgr.update_table_on_sim_change()
 
-window.simSettingsBtn.clicked.connect(toggleSimSettings)
+
+db = DbHandler()
 
 app.exec()
+
