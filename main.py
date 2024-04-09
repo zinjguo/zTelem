@@ -27,18 +27,31 @@ import serial.tools.list_ports
 import configparser
 from PyQt5 import uic
 from telemManager import TelemManager
-from settingsmanager import *
 import PyQt5
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout, QMessageBox, QPushButton, QDialog, \
     QRadioButton, QListView, QScrollArea, QHBoxLayout, QPlainTextEdit, QMenu, QButtonGroup, QFrame, \
     QDialogButtonBox, QSizePolicy, QSpacerItem, QTabWidget, QGroupBox
-from PyQt5.QtCore import QObject, pyqtSignal, Qt, QCoreApplication, QUrl, QRect, QMetaObject, QSize, QByteArray, QTimer, \
+from PyQt5.QtCore import QSize, QObject, pyqtSignal, Qt, QCoreApplication, QUrl, QRect, QMetaObject, QSize, QByteArray, QTimer, \
     QThread, QMutex, QRegularExpression
 from PyQt5.QtGui import QFont, QPixmap, QIcon, QDesktopServices, QPainter, QColor, QKeyEvent, QIntValidator, QCursor, \
     QTextCursor, QRegularExpressionValidator, QKeySequence
 from PyQt5.QtWidgets import QGridLayout, QToolButton, QStyle
-from db import Plane, DbHandler
+
+
+import argparse
+from PyQt5 import QtWidgets
+
+
+#from zTelem_ui import Ui_MainWindow
+
+from time import monotonic
+import socket
+import threading
+from utils import *
+
+import traceback
+
 
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     PyQt5.QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
@@ -55,23 +68,6 @@ logging.basicConfig(
     stream=sys.stdout,
 )
 
-import re
-
-import argparse
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout,QMessageBox, QScrollArea
-from PyQt5.QtCore import QObject, pyqtSignal, Qt, QThread
-from PyQt5.QtGui import QFont
-
-#from zTelem_ui import Ui_MainWindow
-
-from time import monotonic
-import socket
-import threading
-import utils
-
-import traceback
-import os
 
 
 config_file = 'config.ini'
@@ -88,32 +84,14 @@ def format_dict(data, prefix=""):
             output += prefix + key + " = " + str(value) + "\n"
     return output
 
-
-
-
-
-
-
-
-
-# window = MainWindow()
-# window.show()
-
-# manager.telemetryReceived.connect(window.update_telemetry)
-
-# #serialManager.serialReceived.connect(window.update_serial);
-
-
 def getComPorts():
     window.comSelect.clear()
-    window.comSelectWind.clear()
     ports = serial.tools.list_ports.comports()
     com_ports = []
     for port, _, _ in ports:
         com_ports.append(port)
     if com_ports:
         window.comSelect.addItems(com_ports)
-        window.comSelectWind.addItems(com_ports)
 
 def load_last_selection():
     config = configparser.ConfigParser()
@@ -125,12 +103,6 @@ def load_last_selection():
             index = window.comSelect.findText(last_selection)
             if index != -1:
                 window.comSelect.setCurrentIndex(index)
-    if 'LastSelectionWind' in config:
-        last_selection = config['LastSelectionWind'].get('COMPort', '')
-        if last_selection:
-            index = window.comSelectWind.findText(last_selection)
-            if index != -1:
-                window.comSelectWind.setCurrentIndex(index)
                 
     if 'autoConnect' in config:
         autoConnect = config['autoConnect'].getboolean('autoConnect', False)
@@ -139,7 +111,6 @@ def load_last_selection():
 def save_last_selection():
     config = configparser.ConfigParser()
     config['LastSelectionCom'] = {'COMPort': window.comSelect.currentText()}
-    config['LastSelectionWind'] = {'COMPort': window.comSelectWind.currentText()}
     config['autoConnect'] = {'autoConnect': window.autoConnect.isChecked()}
 
     with open(config_file, 'w') as configfile:
@@ -152,7 +123,6 @@ def updateComStatus(status):
         window.disconnectBtn.setEnabled(True)
         window.autoConnect.setEnabled(False)
         window.comSelect.setEnabled(False)
-        window.comSelectWind.setEnabled(False)
     elif status == 'error':
         window.status.setText("Error connecting to port")
         window.connectBtn.setEnabled(True)
@@ -164,7 +134,6 @@ def updateComStatus(status):
         window.connectBtn.setEnabled(True)
         window.autoConnect.setEnabled(True)
         window.comSelect.setEnabled(True)
-        window.comSelectWind.setEnabled(True)
         window.disconnectBtn.setEnabled(False)
 
 def updateTelemetry(data : dict):
@@ -193,16 +162,8 @@ def updateTelemetry(data : dict):
 
 logging.getLogger().handlers[0].setStream(sys.stdout)
 logging.info("zTelem Starting")
-#serialManager = SerialManager();
-#serialManager.start();
-
-manager = TelemManager()
-manager.start()
-manager.comConnected.connect(updateComStatus)
-manager.telemetryReceived.connect(updateTelemetry)
 
 
-#window = uic.loadUi("zTelem.ui", None)
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
@@ -214,18 +175,67 @@ class MainWindow(QtWidgets.QMainWindow):
 app = QtWidgets.QApplication(sys.argv)
 app.setStyle('fusion')
 window = MainWindow()
+
+
+manager = TelemManager()
+manager.start()
+manager.comConnected.connect(updateComStatus)
+manager.telemetryReceived.connect(updateTelemetry)
+
+
+def updateWindStatus(status):
+    if status:
+        window.windEnableIcon.setPixmap(enable_icon)
+        window.connectWindBtn.setText("Disconnect zWind")
+        window.windEnableLabel.setText("zWind connected")
+    else:
+        window.windEnableIcon.setPixmap(disable_icon)
+        window.connectWindBtn.setText("Connect zWind")
+        window.windEnableLabel.setText("zWind not connected")
+        
+def updateFsbStatus(status):
+    if status:
+        window.fsbEnableIcon.setPixmap(enable_icon)
+        #window.connectWindBtn.setText("Disconnect zWind")
+        window.fsbEnableLabel.setText("zFSB Pro connected")
+    else:
+        window.fsbEnableIcon.setPixmap(disable_icon)
+        #window.connectWindBtn.setText("Connect zWind")
+        window.fsbEnableLabel.setText("zFSB Pro not connected")
+        
+def toggleWindConnect():
+    if manager.windEnabled:
+        manager.disconnectWind()
+    else:
+        manager.connectWind()
+        
+enable_color = QColor(255, 255, 0)
+disable_color = QColor(128, 128, 128)
+icon_size = QSize(16, 16)
+enable_icon = create_colored_icon(enable_color, icon_size)
+disable_icon = create_x_icon(disable_color, icon_size)
+window.windEnableIcon.setPixmap(disable_icon)
+window.fsbEnableIcon.setPixmap(disable_icon)
+manager.windConnected.connect(updateWindStatus)
+manager.fsbConnected.connect(updateFsbStatus)
+
+
+window.connectWindBtn.clicked.connect(toggleWindConnect)
+manager.connectWind()
+manager.connectFsb()
+
         
 getComPorts()
 load_last_selection()
 window.comSelect.activated.connect(save_last_selection)
-window.comSelectWind.activated.connect(save_last_selection)
 window.autoConnect.clicked.connect(save_last_selection)
-window.connectBtn.clicked.connect(lambda: manager.connectCom(window.comSelect.currentText(), window.comSelectWind.currentText()))
+window.connectBtn.clicked.connect(lambda: manager.connectCom(window.comSelect.currentText()))
 window.disconnectBtn.clicked.connect(lambda: manager.disconnectCom())
 window.disconnectBtn.setEnabled(False)
 window.refreshComBtn.clicked.connect(getComPorts)
 
 testSend = False
+window.currentPlane = "NONE"
 
 def toggleTestSend():
     global testSend
@@ -241,28 +251,21 @@ def toggleTestSend():
 window.testSend.clicked.connect(toggleTestSend)
 
 
+
 window.setWindowTitle("zTelem")
 window.show()
 
-        
+
         
 def toggleSimSettings():
-    global settings_mgr
-    if settings_mgr.isVisible():
-        settings_mgr.hide()
+    global settingsManager
+    if manager.settingsManager.isVisible():
+        manager.settingsManager.close()
     else: 
-        settings_mgr.show()
+        manager.settingsManager.show("DCS", manager.currentPlane.plane)
         
-    if settings_mgr.current_aircraft_name != '':
-                    settings_mgr.currentmodel_click()
-    else:
-        settings_mgr.update_table_on_class_change()
+window.planeSettingsBtn.clicked.connect(toggleSimSettings)
 
-    if settings_mgr.current_sim == '' or settings_mgr.current_sim == 'nothing':
-        settings_mgr.update_table_on_sim_change()
-
-
-db = DbHandler()
 
 app.exec()
 

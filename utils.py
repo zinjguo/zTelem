@@ -22,12 +22,50 @@ import select
 from time import monotonic
 import logging
 import sys
-import xmlutils
 import xml.etree.ElementTree as ET
-
+import winpaths
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap, QPainter, QColor
 #import winpaths
 
 
+
+def create_colored_icon(color, size):
+    # Create a QPixmap with the specified color and size
+    pixmap = QPixmap(size)
+    pixmap.fill(Qt.transparent)
+
+    # Draw a circle (optional)
+    painter = QPainter(pixmap)
+    painter.setBrush(color)
+    painter.drawEllipse(2, 2, size.width() - 4, size.height() - 4)
+    painter.end()
+
+    return pixmap
+
+def create_x_icon( color, size):
+    pixmap = QPixmap(size)
+    pixmap.fill(Qt.transparent)
+
+    # Draw a circle (optional)
+    painter = QPainter(pixmap)
+    painter.setBrush(color)
+    painter.drawEllipse(2, 2, size.width() - 4, size.height() - 4)
+
+    # Draw two vertical lines for the pause icon
+    line_length = int(size.width() / 3)
+    line_width = 1
+    line1_x = int((size.width() / 2) - 2)
+    line2_x = int((size.width() / 2) + 2)
+    line_y = int((size.height() - line_length) / 2)
+
+    painter.setPen(QColor(Qt.white))
+    painter.drawLine(line1_x, line_y, line2_x, line_y + line_length)
+    painter.drawLine(line2_x, line_y, line1_x, line_y + line_length)
+
+    painter.end()
+
+    return pixmap
 
 def to_number(v):
     """Try to convert string to number
@@ -378,4 +416,3 @@ def get_resource_path(relative_path, prefer_root=False, force=False):
         if not os.path.isfile(f_path):
             logging.warning(f"Warning, get_resource_path did not find file in bundle folder: {f_path}")
         return f_path
-
