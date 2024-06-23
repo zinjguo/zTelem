@@ -20,11 +20,12 @@ from superqt import QLabeledRangeSlider, QLabeledSlider
 from ui_addPlaneDialog import Ui_addPlaneDialog
 
 class Plane:
-    def __init__(self, sim="DCS", plane="Default", gainXConstant=85, gainYConstant=85, gainXMin=10, gainXMax=10, gainYMin=0, gainYMax=255, gainVs=10, gainVne=200, gainEnable=1, gunEnable=1, gunGain=255, AOAEnable=1, AOAGain=255, AOAMin = 8, AOAMax=13, windEnable=1, windMin=5, windMax=180):
+    def __init__(self, sim="DCS", plane="Default", gainXConstant=85, gainYConstant=85, gainConstantEnable=1, gainXMin=10, gainXMax=10, gainYMin=0, gainYMax=255, gainVs=10, gainVne=200, gainEnable=1, gunEnable=1, gunGain=255, AOAEnable=1, AOAGain=255, AOAMin = 8, AOAMax=13, windEnable=1, windMin=5, windMax=180):
         self.sim = str(sim)
         self.plane = str(plane)
         self.gainXConstant = int(gainXConstant)
         self.gainYConstant = int(gainXConstant)
+        self.gainConstantEnable = int(gainConstantEnable)
         self.gainXMin = int(gainXMin)
         self.gainXMax = int(gainXMax)
         self.gainYMin = int(gainYMin)
@@ -54,8 +55,9 @@ class DbHandler:
         self.conn = sqlite3.connect('db.sqlite3', check_same_thread=False)
         self.conn.row_factory = sqlite3.Row
         self.cursor = self.conn.cursor()
-        self.dbVersion = 1
+        self.dbVersion = 2
         self.createSchema()
+        self.upgradeSchema()
 
     def getData(self, query):
         self.cursor.execute(query)
@@ -76,7 +78,7 @@ class DbHandler:
         self.cursor.execute(f"""INSERT INTO planes ({columns}) 
                             VALUES ({values})""", 
                             {'sim': plane.sim, 'plane': plane.plane, 
-                             'gainXConstant': plane.gainXConstant, 'gainYConstant': plane.gainYConstant,
+                             'gainXConstant': plane.gainXConstant, 'gainYConstant': plane.gainYConstant, 'gainConstantEnable': plane.gainConstantEnable,
                              'gainXMin': plane.gainXMin, 'gainXMax': plane.gainXMax, 
                              'gainYMin': plane.gainYMin, 'gainYMax': plane.gainYMax, 'gainVs': plane.gainVs, 'gainVne': plane.gainVne, 
                              'gainEnable': plane.gainEnable, 'gunEnable': plane.gunEnable, 'gunGain': plane.gunGain, 'AOAEnable': plane.AOAEnable, 
@@ -125,7 +127,7 @@ class DbHandler:
                             SET {columns} 
                             WHERE sim = :sim AND plane = :plane""", 
                             {'sim': plane.sim, 'plane': plane.plane, 
-                             'gainXConstant': plane.gainXConstant, 'gainYConstant': plane.gainYConstant, 
+                             'gainXConstant': plane.gainXConstant, 'gainYConstant': plane.gainYConstant, 'gainConstantEnable': plane.gainConstantEnable,
                              'gainXMin': plane.gainXMin, 'gainXMax': plane.gainXMax, 
                              'gainYMin': plane.gainYMin, 'gainYMax': plane.gainYMax, 'gainVs': plane.gainVs, 'gainVne': plane.gainVne, 
                              'gainEnable': plane.gainEnable, 'gunEnable': plane.gunEnable, 'gunGain': plane.gunGain, 'AOAEnable': plane.AOAEnable, 
@@ -170,13 +172,23 @@ class DbHandler:
             
             self.conn.commit()
         
-        if(currentDbVersion != self.dbVersion and currentDbVersion != 0):
-            raise("Database version mismatch")
-        #self.insertTestData()
 
     def upgradeSchema(self):
-        #TO DO
-        pass
+        currentDbVersion = self.cursor.execute('pragma user_version').fetchone()[0]
+
+        if currentDbVersion == 1:
+            newVersion = 2
+            # Check if the gainConstantEnable column does not exist and then add it
+            self.cursor.execute("SELECT * FROM pragma_table_info('planes') WHERE name='gainConstantEnable'")
+            if not self.cursor.fetchone():
+                # Adding the gainConstantEnable column, assuming it's of type INTEGER (use TEXT, REAL, etc., as needed)
+                self.cursor.execute('ALTER TABLE planes ADD COLUMN gainConstantEnable INTEGER DEFAULT 0')
+                print("Added 'gainConstantEnable' column to 'planes' table.")
+
+            # Update the database version after the upgrade
+            self.cursor.execute(f'pragma user_version = {newVersion}')
+            self.conn.commit()
+            print(f"Database schema upgraded to version {newVersion}.")
     
 class AddPlaneDialog(QtWidgets.QDialog, Ui_addPlaneDialog):
     def __init__(self):
@@ -239,6 +251,41 @@ class PlaneSettingsManager(QtWidgets.QDialog, Ui_planesSettings):
         if sim == "All":
             sim = "DCS"
         result = self.db.getPlane(sim, plane)
+
+        effectsGroup = QGroupBox()
+        effectsGroup.setTitle("Effects")
+        self.settingsLayout.addWidget(effectsGroup)
+
+        effectsLayout = QHBoxLayout()
+        effectsGroup.setLayout(effectsLayout)
+
+        gainCheckbox = QCheckBox("Dynamic Sensitivity")
+        gainCheckbox.setObjectName("gainCheckbox")
+        gainCheckbox.setChecked(result.gainEnable)
+        effectsLayout.addWidget(gainCheckbox)
+
+        gainConstantCheckbox = QCheckBox("Constant Sensitivity")
+        gainConstantCheckbox.setObjectName("gainContantCheckbox")
+        gainConstantCheckbox.setChecked(result.gainConstantEnable)
+        effectsLayout.addWidget(gainConstantCheckbox)
+
+        if gainCheckbox.isChecked():
+            gainConstantCheckbox.setEnabled(False)
+        
+        AOACheckbox = QCheckBox("AOA Shake")
+        AOACheckbox.setObjectName("AOACheckbox")
+        AOACheckbox.setChecked(result.AOAEnable)
+        effectsLayout.addWidget(AOACheckbox)
+
+        gunShakeCheckbox = QCheckBox("Gun Shake")
+        gunShakeCheckbox.setObjectName("gunShakeCheckbox")
+        gunShakeCheckbox.setChecked(result.gunEnable)
+        effectsLayout.addWidget(gunShakeCheckbox)
+
+        windCheckbox = QCheckBox("Wind Simulator")
+        windCheckbox.setObjectName("windCheckbox")
+        windCheckbox.setChecked(result.windEnable)
+        effectsLayout.addWidget(windCheckbox)
         
         gainXRange = QLabeledRangeSlider(Qt.Orientation.Horizontal)
         gainXRange.setRange(0, 255)
@@ -251,9 +298,7 @@ class PlaneSettingsManager(QtWidgets.QDialog, Ui_planesSettings):
         gainYRange.setRange(0, 255)
         gainYRange.setValue([result.gainYMin, result.gainYMax])
         gainYRange.setEdgeLabelMode(QLabeledRangeSlider.LabelPosition.NoLabel)
-        gainCheckbox = QCheckBox("Enable Dynamic Sensitivity")
-        gainCheckbox.setObjectName("gainCheckbox")
-        gainCheckbox.setChecked(result.gainEnable)
+
         
         speedRange = QLabeledRangeSlider(Qt.Orientation.Horizontal)
         speedRange.setObjectName("speedRange")
@@ -262,7 +307,6 @@ class PlaneSettingsManager(QtWidgets.QDialog, Ui_planesSettings):
         speedRange.setEdgeLabelMode(QLabeledRangeSlider.LabelPosition.NoLabel)
                 
         gainLayout = QVBoxLayout()
-        gainLayout.addWidget(gainCheckbox)
         gainXLabel = QLabel("Set Min and Max Sensitivity for X Axis")
         
         gainYLabel = QLabel("Set Min and Max Sensitivity for Y Axis")
@@ -281,7 +325,6 @@ class PlaneSettingsManager(QtWidgets.QDialog, Ui_planesSettings):
         
         gainLayout.addLayout(gainXYHLayout)
         
-        
         speedLabel = QLabel("Set Min and Max Speed when Gain Control is Active")
         gainLayout.addWidget(speedLabel)
         gainLayout.addWidget(speedRange)
@@ -289,9 +332,12 @@ class PlaneSettingsManager(QtWidgets.QDialog, Ui_planesSettings):
         gainGroup = QGroupBox()
         gainGroup.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
         gainGroup.setTitle("Dynamic Sensitivity Settings")
+        gainGroup.setObjectName("gainGroup")
         gainGroup.setLayout(gainLayout)
- 
         self.settingsLayout.addWidget(gainGroup)
+
+        if(result.gainEnable == False):
+            gainGroup.setEnabled(False)
         
         gainXConstantLabel = QLabel("Set Constant Sensitivity for X Axis")
         gainXConstantSlider = QLabeledSlider(Qt.Orientation.Horizontal)
@@ -319,6 +365,7 @@ class PlaneSettingsManager(QtWidgets.QDialog, Ui_planesSettings):
         gainConstantLayout.addLayout(gainYConstantHLayout)
         
         gainConstantGroup = QGroupBox()
+        gainConstantGroup.setObjectName("gainConstantGroup")
         gainConstantGroup.setTitle("Constant Sensitivity Settings")
         gainConstantGroup.setLayout(gainConstantLayout)
         self.settingsLayout.addWidget(gainConstantGroup)
@@ -326,14 +373,12 @@ class PlaneSettingsManager(QtWidgets.QDialog, Ui_planesSettings):
         if(result.gainEnable):
             gainConstantGroup.setEnabled(False)    
         
-        shakeLayout = QVBoxLayout()
-        shakeGroup = QGroupBox()
-        shakeGroup.setTitle("Shake Settings")
-        shakeGroup.setLayout(shakeLayout)
-        
-        AOACheckbox = QCheckBox("Enable AOA Shake")
-        AOACheckbox.setObjectName("AOACheckbox")
-        AOACheckbox.setChecked(result.AOAEnable)
+        AOAshakeLayout = QVBoxLayout()
+        AOAshakeGroup = QGroupBox()
+        AOAshakeGroup.setTitle("AOA Shake Settings")
+        AOAshakeGroup.setLayout(AOAshakeLayout)
+        self.settingsLayout.addWidget(AOAshakeGroup)    
+       
         AOAIntensitiy = QLabeledSlider(Qt.Orientation.Horizontal)
         AOAIntensitiy.setObjectName("AOAIntensitiy")
         AOAIntensitiy.setRange(0, 255)
@@ -345,7 +390,6 @@ class PlaneSettingsManager(QtWidgets.QDialog, Ui_planesSettings):
         AOARange.setEdgeLabelMode(QLabeledRangeSlider.LabelPosition.NoLabel)
         
         AOAHLayout = QHBoxLayout()
-        AOAHLayout.addWidget(AOACheckbox)
         AOAHLayout.addWidget(AOAIntensitiy)
         
         AOAHLayout2 = QHBoxLayout()
@@ -355,45 +399,57 @@ class PlaneSettingsManager(QtWidgets.QDialog, Ui_planesSettings):
         AOAVLayout = QVBoxLayout()
         AOAVLayout.addLayout(AOAHLayout)
         AOAVLayout.addLayout(AOAHLayout2)
-        
-        gunShakeCheckbox = QCheckBox("Enable Gun Shake")
-        gunShakeCheckbox.setObjectName("gunShakeCheckbox")
-        gunShakeCheckbox.setChecked(result.gunEnable)
+
+
+        gunShakeLayout = QVBoxLayout()
+        gunShakeGroup = QGroupBox()
+        gunShakeGroup.setTitle("Gun Shake Settings")
+        gunShakeGroup.setLayout(gunShakeLayout)
+        self.settingsLayout.addWidget(gunShakeGroup)
+
         gunShakeGain = QLabeledSlider(Qt.Orientation.Horizontal)
         gunShakeGain.setObjectName("gunShakeGain")
         gunShakeGain.setRange(0, 255)
         gunShakeGain.setValue(result.gunGain)
         gunShakeHLayout = QHBoxLayout()
-        gunShakeHLayout.addWidget(gunShakeCheckbox)
         gunShakeHLayout.addWidget(gunShakeGain)
 
-        shakeLayout.addLayout(AOAVLayout)
-        shakeLayout.addLayout(gunShakeHLayout)
-        self.settingsLayout.addWidget(shakeGroup)
+        AOAshakeLayout.addLayout(AOAVLayout)
+        gunShakeLayout.addLayout(gunShakeHLayout)
         
         windLayout = QHBoxLayout()
         windGroup = QGroupBox()
         windGroup.setFixedSize(560,80)
         windGroup.setTitle("Wind Settings")
         windGroup.setLayout(windLayout)
-        windCheckbox = QCheckBox("Enable Wind Simulator")
-        windCheckbox.setObjectName("windCheckbox")
-        windCheckbox.setChecked(result.windEnable)
+
         windRangeSlider = QLabeledRangeSlider(Qt.Orientation.Horizontal)
         windRangeSlider.setObjectName("windRangeSlider")
         windRangeSlider.setRange(0, 600)
         windRangeSlider.setValue([result.windMin, result.windMax])
         windRangeSlider.setEdgeLabelMode(QLabeledRangeSlider.LabelPosition.NoLabel)
         
-        windLayout.addWidget(windCheckbox)
         windLayout.addWidget(windRangeSlider)
         self.settingsLayout.addWidget(windGroup)
 
+        gainCheckbox.stateChanged.connect(lambda: self.toggleGainSettings(gainCheckbox.isChecked()))
+        gainConstantCheckbox.stateChanged.connect(lambda: self.toggleGainConstantSettings(gainConstantCheckbox.isChecked()))
+    
+    def toggleGainSettings(self, checked):
+        self.findChild(QGroupBox, "gainGroup").setEnabled(checked)
+        self.findChild(QGroupBox, "gainConstantGroup").setEnabled(not checked)
+        self.findChild(QCheckBox, "gainContantCheckbox").setEnabled(not checked)
+        #self.toggleGainConstantSettings(not checked)
+    
+    def toggleGainConstantSettings(self, checked):
+        self.findChild(QGroupBox, "gainConstantGroup").setEnabled(checked)
+        
     def saveSettings(self):
         plane = Plane()
         plane.sim, plane.plane = self.planesList.currentText().split(" - ", 1)
         plane.gainXConstant = self.findChild(QLabeledSlider, "gainXConstantSlider").value()
         plane.gainYConstant = self.findChild(QLabeledSlider, "gainYConstantSlider").value()
+        plane.gainConstantEnable = self.findChild(QCheckBox, "gainContantCheckbox").isChecked()
         plane.gainXMin, plane.gainXMax = self.findChild(QLabeledRangeSlider, "gainXRange").value()
         plane.gainYMin, plane.gainYMax = self.findChild(QLabeledRangeSlider, "gainYRange").value()
         plane.gainVs, plane.gainVne = self.findChild(QLabeledRangeSlider, "speedRange").value()

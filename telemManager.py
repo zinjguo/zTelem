@@ -1,4 +1,3 @@
-import serial
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout,QMessageBox, QScrollArea
 from PyQt5.QtCore import QObject, pyqtSignal, Qt, QThread
@@ -12,7 +11,6 @@ import utils
 import time
 import numpy as np
 from time import monotonic
-from serialHandler import SerialHandler
 import math
 from typing import List, Dict
 from db import Plane, DbHandler, PlaneSettingsManager
@@ -57,13 +55,11 @@ class TelemManager(QObject, threading.Thread):
     lastFrameTime : int = 0
     numFrames : int = 0
 
-    serialEnabled = False
     windEnabled = False
     fsbEnabled = False
 
     lastGun = 0
 
-    ser = SerialHandler("fsb")
     
     def startTestThread(self):
         self.testThread = TestThread(self)
@@ -112,25 +108,6 @@ class TelemManager(QObject, threading.Thread):
     def disconnectFsb(self):
         self.fsbConnected.emit(False)
         self.fsbEnabled = False
-
-    def connectCom(self, port):
-        self.serialEnabled = self.ser.connect(port)
-        
-            
-        if self.serialEnabled:
-            self.comConnected.emit("connected")
-        else:
-            self.comConnected.emit("error")
-            
-        return self.serialEnabled
-
-
-    def disconnectCom(self):
-        self.ser.disconnect()
-        self.serialEnabled = False
-        self.comConnected.emit("disconnected")
-        return self.serialEnabled
-    
 
     def run(self):
 

@@ -22,8 +22,6 @@ sys.path.insert(0, '')
 import struct
 import time
 import traceback
-from pySerialTransfer import pySerialTransfer as txfer
-import serial.tools.list_ports
 import configparser
 from PyQt5 import uic
 from telemManager import TelemManager
@@ -41,9 +39,6 @@ from PyQt5.QtWidgets import QGridLayout, QToolButton, QStyle
 
 import argparse
 from PyQt5 import QtWidgets
-
-
-#from zTelem_ui import Ui_MainWindow
 
 from time import monotonic
 import socket
@@ -72,7 +67,6 @@ logging.basicConfig(
 
 config_file = 'config.ini'
 
-serialEnabled = False
 
 
 def format_dict(data, prefix=""):
@@ -83,58 +77,6 @@ def format_dict(data, prefix=""):
         else:
             output += prefix + key + " = " + str(value) + "\n"
     return output
-
-def getComPorts():
-    window.comSelect.clear()
-    ports = serial.tools.list_ports.comports()
-    com_ports = []
-    for port, _, _ in ports:
-        com_ports.append(port)
-    if com_ports:
-        window.comSelect.addItems(com_ports)
-
-def load_last_selection():
-    config = configparser.ConfigParser()
-    config.read(config_file)
-
-    if 'LastSelectionCom' in config:
-        last_selection = config['LastSelectionCom'].get('COMPort', '')
-        if last_selection:
-            index = window.comSelect.findText(last_selection)
-            if index != -1:
-                window.comSelect.setCurrentIndex(index)
-                
-    if 'autoConnect' in config:
-        autoConnect = config['autoConnect'].getboolean('autoConnect', False)
-        window.autoConnect.setChecked(autoConnect)
-
-def save_last_selection():
-    config = configparser.ConfigParser()
-    config['LastSelectionCom'] = {'COMPort': window.comSelect.currentText()}
-    config['autoConnect'] = {'autoConnect': window.autoConnect.isChecked()}
-
-    with open(config_file, 'w') as configfile:
-        config.write(configfile)
-
-def updateComStatus(status):
-    if status == 'connected':
-        window.status.setText("Connected")
-        window.connectBtn.setEnabled(False)
-        window.disconnectBtn.setEnabled(True)
-        window.autoConnect.setEnabled(False)
-        window.comSelect.setEnabled(False)
-    elif status == 'error':
-        window.status.setText("Error connecting to port")
-        window.connectBtn.setEnabled(True)
-        window.disconnectBtn.setEnabled(False)
-        window.autoConnect.setEnabled(True)
-        window.comSelect.setEnabled(True)
-    elif status == 'disconnected':
-        window.status.setText("Disconnected")
-        window.connectBtn.setEnabled(True)
-        window.autoConnect.setEnabled(True)
-        window.comSelect.setEnabled(True)
-        window.disconnectBtn.setEnabled(False)
 
 def updateTelemetry(data : dict):
     items = ""
@@ -156,7 +98,6 @@ def updateTelemetry(data : dict):
     itemsText += "Guns:" + str(data.get('Gun', 0)) + "\n"
     itemsText += "AoA:" + str(data.get('AoA', 0)) + "\n"
     itemsText += "altAgl:" + str(data.get('altAgl', 0)) + "\n"
-    itemsText += "Serial output: " + str(data.get("serialOutput", 0)) + "\n"
     window.telemStatus.setText(itemsText)
 
 
@@ -169,7 +110,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         uic.loadUi("zTelem.ui", self)
-        self.setFixedSize(510, 380)
+        self.setFixedSize(self.size())
         self.setStatusBar(None)
         
 app = QtWidgets.QApplication(sys.argv)
@@ -179,28 +120,21 @@ window = MainWindow()
 
 manager = TelemManager()
 manager.start()
-manager.comConnected.connect(updateComStatus)
 manager.telemetryReceived.connect(updateTelemetry)
 
 
 def updateWindStatus(status):
     if status:
         window.windEnableIcon.setPixmap(enable_icon)
-        window.connectWindBtn.setText("Disconnect zWind")
-        window.windEnableLabel.setText("zWind connected")
     else:
         window.windEnableIcon.setPixmap(disable_icon)
-        window.connectWindBtn.setText("Connect zWind")
-        window.windEnableLabel.setText("zWind not connected")
         
 def updateFsbStatus(status):
     if status:
         window.fsbEnableIcon.setPixmap(enable_icon)
-        #window.connectWindBtn.setText("Disconnect zWind")
         window.fsbEnableLabel.setText("zFSB Pro connected")
     else:
         window.fsbEnableIcon.setPixmap(disable_icon)
-        #window.connectWindBtn.setText("Connect zWind")
         window.fsbEnableLabel.setText("zFSB Pro not connected")
         
 def toggleWindConnect():
@@ -220,20 +154,10 @@ manager.windConnected.connect(updateWindStatus)
 manager.fsbConnected.connect(updateFsbStatus)
 
 
-window.connectWindBtn.clicked.connect(toggleWindConnect)
 manager.connectWind()
 manager.connectFsb()
 
         
-getComPorts()
-load_last_selection()
-window.comSelect.activated.connect(save_last_selection)
-window.autoConnect.clicked.connect(save_last_selection)
-window.connectBtn.clicked.connect(lambda: manager.connectCom(window.comSelect.currentText()))
-window.disconnectBtn.clicked.connect(lambda: manager.disconnectCom())
-window.disconnectBtn.setEnabled(False)
-window.refreshComBtn.clicked.connect(getComPorts)
-
 testSend = False
 window.currentPlane = "NONE"
 
