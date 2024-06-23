@@ -36,7 +36,7 @@ class TestThread(threading.Thread):
             #self._parent.ser.sendTelem([int(126), int(255), int(255), ord('s')])
             
             #self._parent.serWind.sendTelem([int(100), int(255), int(1)])
-            #self._parent.wind.sendTelem(125, 125)
+            self._parent.wind.sendTelem(125, 125)
             self._parent.fsb.sendTelem(int(126), int(255), int(255), 'r')
             time.sleep(.013888)
             
@@ -248,8 +248,10 @@ class TelemManager(QObject, threading.Thread):
                         if items['AoA'] > AOAMin and items['altAgl'] > 10:
                             vibration = int(self.map_range(items['AoA'], AOAMin, AOAMax, 60, 255))
                             vibrationType='r'
-                            
+                    
+                    print(gainX);        
                     self.fsb.sendTelem(int(gainX), int(gainY), int(vibration), vibrationType)
+
                         
                 if (self.windEnabled and windEnable):
                     if ("TAS" in items):

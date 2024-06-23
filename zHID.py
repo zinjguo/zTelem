@@ -60,7 +60,7 @@ class zWind(zHID):
         self.write([ord('t'), speed1, speed2])  # Send 3 bytes of data
         
 class zFSBPro(zHID):
-    def __init__(self, vid = 0x044F, pid=0x0402, dataLength = 5) -> None:
+    def __init__(self, vid = 0x2E8A, pid=0x0402, dataLength = 5) -> None:
         super().__init__(vid, pid, dataLength)
 
     def sendTelem(self, gainX, gainY, vibration, type):
