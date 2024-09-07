@@ -1,4 +1,3 @@
-import os
 import ctypes
 import atexit
 

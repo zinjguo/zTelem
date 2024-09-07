@@ -1,21 +1,9 @@
-from collections.abc import Iterable
-from msilib import schema
 import sqlite3
-from turtle import speed
-from typing import Any
-from PyQt5 import uic
-import PyQt5
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout, QMessageBox, QPushButton, QDialog, \
-    QRadioButton, QListView, QScrollArea, QHBoxLayout, QPlainTextEdit, QMenu, QButtonGroup, QFrame, \
-    QDialogButtonBox, QSizePolicy, QSpacerItem, QTabWidget, QGroupBox
-from PyQt5.QtCore import QObject, pyqtSignal, Qt, QCoreApplication, QUrl, QRect, QMetaObject, QSize, QByteArray, QTimer, \
-    QThread, QMutex, QRegularExpression
-from PyQt5.QtGui import QFont, QPixmap, QIcon, QDesktopServices, QPainter, QColor, QKeyEvent, QIntValidator, QCursor, \
-    QTextCursor, QRegularExpressionValidator, QKeySequence
-from PyQt5.QtWidgets import QGridLayout, QToolButton, QStyle
+from PyQt5.QtWidgets import QLabel, QVBoxLayout, QHBoxLayout, QSizePolicy, QGroupBox
+from PyQt5.QtCore import Qt
 from ui_planeSettings import Ui_planesSettings
-from PyQt5.QtWidgets import QTableWidgetItem, QCheckBox, QSpinBox
+from PyQt5.QtWidgets import QCheckBox
 from superqt import QLabeledRangeSlider, QLabeledSlider
 from ui_addPlaneDialog import Ui_addPlaneDialog
 
@@ -25,21 +13,21 @@ class Plane:
         self.plane = str(plane)
         self.gainXConstant = int(gainXConstant)
         self.gainYConstant = int(gainXConstant)
-        self.gainConstantEnable = int(gainConstantEnable)
+        self.gainConstantEnable = bool(gainConstantEnable)
         self.gainXMin = int(gainXMin)
         self.gainXMax = int(gainXMax)
         self.gainYMin = int(gainYMin)
         self.gainYMax = int(gainYMax)
         self.gainVs = int(gainVs)
         self.gainVne = int(gainVne)
-        self.gainEnable = int(gainEnable)
-        self.gunEnable = int(gunEnable)
+        self.gainEnable = bool(gainEnable)
+        self.gunEnable = bool(gunEnable)
         self.gunGain = int(gunGain)
-        self.AOAEnable = int(AOAEnable)
+        self.AOAEnable = bool(AOAEnable)
         self.AOAGain = int(AOAGain)
         self.AOAMin = int(AOAMin)
         self.AOAMax = int(AOAMax)
-        self.windEnable = int(windEnable)
+        self.windEnable = bool(windEnable)
         self.windMin = int(windMin)
         self.windMax = int(windMax)
     

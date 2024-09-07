@@ -22,12 +22,8 @@ import select
 from time import monotonic
 import logging
 import sys
-import xml.etree.ElementTree as ET
-import winpaths
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QPainter, QColor
-#import winpaths
-
 
 
 def create_colored_icon(color, size):
@@ -371,18 +367,6 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     install_export_lua()
 
-def create_empty_userxml_file(path):
-    print(path)
-    if not os.path.isfile(path):
-        # Create an empty XML file with the specified root element
-        root = ET.Element("TelemFFB")
-        tree = ET.ElementTree(root)
-        # Create a backup directory if it doesn't exist
-
-        tree.write(path)
-        logging.info(f"Empty XML file created at {path}")
-    else:
-        logging.info(f"XML file exists at {path}")
 
 def get_resource_path(relative_path, prefer_root=False, force=False):
     """ Get absolute path to resource, works for dev and for PyInstaller """

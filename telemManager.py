@@ -1,7 +1,4 @@
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QVBoxLayout,QMessageBox, QScrollArea
-from PyQt5.QtCore import QObject, pyqtSignal, Qt, QThread
-from PyQt5.QtGui import QFont
+from PyQt5.QtCore import QObject, pyqtSignal
 import threading
 import json
 import socket
@@ -75,7 +72,7 @@ class TelemManager(QObject, threading.Thread):
         self.testThread = TestThread(self)
         self.daemon = True
         self.settingsManager = PlaneSettingsManager(self)
-        self.currentPlane = Plane()
+        self.currentPlane = self.settingsManager.db.getPlane("DCS", "Default")
 
     def connectWind(self):
         self.wind = zWind()
@@ -171,10 +168,9 @@ class TelemManager(QObject, threading.Thread):
                 if result != False:
                     self.currentPlane = result
                 else:
-                    self.currentPlane.plane = planeName
+                    self.currentPlane.plane = self.settingsManager.db.getPlane("DCS", "Default")
                 
-                print(f"Plane changed to {self.currentPlane.plane}")
-            
+                
             
             currentMillis = time.monotonic() * 1000;   
             if self.currentPlane and currentMillis - self.lastFrameTime > 1000/90:
@@ -197,7 +193,8 @@ class TelemManager(QObject, threading.Thread):
                 if self.currentPlane.AOAEnable:
                     AOAMin = self.currentPlane.AOAMin
                     AOAMax = self.currentPlane.AOAMax
-                    
+                
+                windEnable = False    
                 if self.currentPlane.windEnable:
                     windEnable = self.currentPlane.windEnable
                     windMin = self.currentPlane.windMin
@@ -208,7 +205,7 @@ class TelemManager(QObject, threading.Thread):
                     if self.currentPlane.gainEnable and ("TAS" in items):
                         gainX = self.map_range(items['TAS'], gainVs, gainVne, gainXMin, gainXMax)
                         gainY = self.map_range(items['TAS'], gainVs, gainVne, gainYMin, gainYMax)
-                        #print(f"GainX: {gainX}, GainY: {gainY}")
+                        print(f"GainX: {gainX}, GainY: {gainY}")
                     else:
                         gainX = gainXConstant
                         gainY = gainYConstant
@@ -226,7 +223,7 @@ class TelemManager(QObject, threading.Thread):
                             vibration = int(self.map_range(items['AoA'], AOAMin, AOAMax, 60, 255))
                             vibrationType='r'
                     
-                    print(gainX);        
+                    print(gainY)
                     self.fsb.sendTelem(int(gainX), int(gainY), int(vibration), vibrationType)
 
                         
