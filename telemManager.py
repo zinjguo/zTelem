@@ -6,11 +6,9 @@ import logging
 from utils import *
 import utils
 import time
-import numpy as np
 from time import monotonic
-import math
 from typing import List, Dict
-from db import Plane, DbHandler, PlaneSettingsManager
+from db import Plane, PlaneSettingsManager
 
 from zHID import zWind, zFSBPro
 
