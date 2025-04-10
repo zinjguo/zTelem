@@ -216,8 +216,8 @@ class TelemManager(QObject, threading.Thread):
                         gunFire = False
                         vibration = 0
                         
-                    if "AoA" in items and self.currentPlane.AOAEnable:
-                        if items['AoA'] > AOAMin and items['altAgl'] > 10:
+                    if "AoA" in items and self.currentPlane.AOAEnable and ("TAS" in items):
+                        if items['AoA'] > AOAMin and items['altAgl'] > 10 and items['TAS'] > 10:
                             vibration = int(self.map_range(items['AoA'], AOAMin, AOAMax, 60, 255))
                             vibrationType='r'
                     

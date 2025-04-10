@@ -1,0 +1,1 @@
+local zTelemFs=require('lfs');dofile(zTelemFs.writedir()..'Scripts/zTelem.lua')
